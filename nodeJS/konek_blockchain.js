@@ -16,7 +16,7 @@ let abi = process.env.ABI;
 try{
     deploy_contract = new web3.eth.Contract(JSON.parse(abi),contract_address,{parameter});
 }catch(e){
-    throw 'SILAHKAN BUAT CONTRACT DAHULU : npm create';
+    throw 'SILAHKAN BUAT CONTRACT DAHULU : npm run create';
     
 }
 module.exports = deploy_contract;

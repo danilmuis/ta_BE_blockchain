@@ -2,6 +2,7 @@ var express = require('express');
 require('dotenv').config();
 var app = express();
 var port = 9000;
+var cors = require('cors');
 var bodyParser = require('body-parser');
 //var mdm = require('./nodeJS/mdm');
 
@@ -11,11 +12,11 @@ var blockchain = require('./nodeJS/methodBlockchain');
 
 var controller = require('./nodeJS/controller');
 
+app.use(cors());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
-
-var routes = require('./nodeJS/routes')
+var routes = require('./nodeJS/routes');
 routes(app);
 
 run();
