@@ -44,7 +44,23 @@ installDependencies(){
     echo -e "${GREEN}"
     echo -e "[*] FINISH INSTALLING GIT GCC APACHE2 MAKE CURL"
 }
+installGeth(){
+    cd $HOME
+    git clone https://github.com/ethereum/go-ethereum
+    cd go-ethereum
+    make all
+    cp build/bin/* /usr/local/bin/.
+}
+installNodeJS(){
+    cd $HOME
+    wget https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz
+    mkdir -p /usr/local/lib/nodejs
+    tar -xJvf node-v12.19.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
+    export PATH=/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin:$PATH
+}
 cd $HOME
 installDependencies
 installGo
+installGeth
+installNodeJS
 /bin/bash

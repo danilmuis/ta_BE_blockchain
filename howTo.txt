@@ -1,0 +1,50 @@
+#buat node1
+mkdir node1
+geth --datadir "./data" account new
+
+#buat node2 dan seterusnya
+geth --datadir "./data" account new
+
+catat public address dari tiap node yg dibuat di info.txt
+
+#buat genesis blocknya
+puppeth
+1. masukkin nama - genesis
+2. pilih configure new genesis
+3. pilih create new genesis from scratch
+4. pilih clique - proof of authority
+5. how many second, pilih 5
+6. allow to seal, masukin address node1
+7. prefunded, masukin semua adress nodenya
+8. precompile, pilih yes
+9. masukin network id, 9999
+10. pilih manage existing genesis
+11. pilih export genesis config
+12. enter aja
+
+#inisialisasi genesis pada tiap node
+cd node1
+geth --datadir "./data" init ../genesis.json
+
+#lakukan untuk semua node
+
+#buat bootnode
+mkdir bnode
+bootnode -genkey boot.key
+bootnode -nodekey "./boot.key" -verbosity 7 -addr "IP_PUBLIC:30301"
+#catat enodenya pada info.txt
+
+#konek node yang lain dengan bootnode
+#khusus node1 (miner)                                                          #enode dari bootnode                                                                                                                                                                                                                                                                                  public addressnya                                                             
+geth --networkid 9999 --datadir "./data" --bootnodes enode://f4229eb54552c20649a4fee28a5d39cd48bf171df8e4b08818ff30287f2ecf9b3d6d6313a5b0b58b877bb90e14f30ff24ce3f8bda836fcf2eeed51570d752498@192.168.18.52:0?discport=30301 --port 30303 --ipcdisable --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8545 --unlock 0x2CB0817440b9817A92aC33B918F0A39597B97023 --password password.txt --mine console
+
+#node 2 dst
+geth --networkid 9999 --datadir "./data" --bootnodes enode://f4229eb54552c20649a4fee28a5d39cd48bf171df8e4b08818ff30287f2ecf9b3d6d6313a5b0b58b877bb90e14f30ff24ce3f8bda836fcf2eeed51570d752498@192.168.18.52:0?discport=30301 --port 30304 --ipcdisable --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8546 --unlock 0x4d080b2122b3ada03a309C89244b545Eb7A7f7cb --password password.txt console
+
+#compile smart contract untuk dapatkan abi dan bytenya
+npm install -g solc 
+solcjs -o target --bin --abi mdm.sol    
+
+
+#download direktori akun
+wget -r -np --reject="index.html*"  http://192.168.18.52/blockchain_test/account/node2/
