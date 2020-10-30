@@ -222,6 +222,7 @@ setupBlockchain(){
     npm start &">> $HOME/.bashrc
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode &
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+    npm install
     npm run create
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
 }
@@ -251,7 +252,7 @@ else
         echo -e "${YELLOW}"
         checkRoot
         IP=$(hostname -I | awk '{print $1}')
-        echo "export IP=$IP>> $HOME/.bashrc
+        echo "export IP=$IP">> $HOME/.bashrc
         echo "YOUR IP IS ${IP}"
         checkPing
         #IPFS
