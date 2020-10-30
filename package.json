@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo tesx",
-    "start": "nodemon nodeJS/server.js",
+    "start": "node nodeJS/server.js",
+    "develop": "nodemon nodeJS/server.js",
     "mdm": "whoami",
     "create": "node ./nodeJS/createContract"
   },
