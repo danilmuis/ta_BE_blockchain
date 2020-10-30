@@ -205,15 +205,18 @@ sleep 10">> $HOME/.bashrc
     echo -e "${GREEN}"
     echo -e "[*] FINISH IPFS CLUSTER"
 }installDAPP(){
-    cd $HOME
+    cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
     echo -e "${YELLOW}"
-    echo -e "[*] SETUP BLOCKCHAIN"
+    echo -e "[*] SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
     echo "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode &
     sleep 5
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
     sleep 15
     npm start &">> $HOME/.bashrc
-    echo -e "[*] FINISH SETUP BLOCKCHAIN"
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode &
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+    npm run create
+    echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
 }
 checkRoot(){
     if [ $(whoami) == "root" ]
