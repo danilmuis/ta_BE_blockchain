@@ -204,6 +204,16 @@ sleep 10">> $HOME/.bashrc
 	#systemctl status ipfs-cluster
     echo -e "${GREEN}"
     echo -e "[*] FINISH IPFS CLUSTER"
+}installDAPP(){
+    cd $HOME
+    echo -e "${YELLOW}"
+    echo -e "[*] SETUP BLOCKCHAIN"
+    echo "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode &
+    sleep 5
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+    sleep 15
+    npm start &">> $HOME/.bashrc
+    echo -e "[*] FINISH SETUP BLOCKCHAIN"
 }
 checkRoot(){
     if [ $(whoami) == "root" ]
@@ -231,6 +241,7 @@ else
         echo -e "${YELLOW}"
         checkRoot
         IP=$(hostname -I | awk '{print $1}')
+        echo "export IP=$IP>> $HOME/.bashrc
         echo "YOUR IP IS ${IP}"
         checkPing
         #IPFS
@@ -243,6 +254,7 @@ else
         #IPFS CLUSTER
         installIPFSCluster
         startIPFSCluster
+        installDAPP
         echo -e "${RED} [*] FINISH INSTALLING > WAITING 10 SEC TO REBOOT"
         sleep 10
         reboot

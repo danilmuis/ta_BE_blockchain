@@ -2,9 +2,10 @@
 var router =require('express').Router();
 var controller = require('./controller')
 router.get('/',controller.index);
-router.post('/send',controller.send)
-router.get('/contract',controller.contract)
-module.exports = router
+router.post('/send',controller.send);
+router.get('/contract',controller.contract);
+router.post('/find',controller.find);
+module.exports = router;
 // module.exports = function(app){
 //     var controller = require('./controller')
 

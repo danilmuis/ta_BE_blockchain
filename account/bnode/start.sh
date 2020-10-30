@@ -1,0 +1,1 @@
+bootnode -nodekey "./boot.key" -verbosity 7 -addr "$IP:30301"

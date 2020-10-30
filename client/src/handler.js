@@ -33,10 +33,10 @@ class handler{
         });
     }
     //find hash
-    static findHash(data){
+    static findHash(find){
         return axios.post(`${url}find`,{
-            data
-        });
+            find
+        }).then(res => (this.info = res.data.hash != undefined));
     }
 }
 export default handler;

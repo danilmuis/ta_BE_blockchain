@@ -6,6 +6,12 @@
       <input type="text" id="send-hash" v-model="data" placeholder="Enter your hash">
       <button v-on:click="sendHash">SEND!!</button>
     </div>
+    <div class="find">
+      <label for="find">Find your hash</label>
+      <input type="text" id="find" v-model="find">
+      <button v-on:click="findIT">FIND IT</button>
+      <h2>{{result}}</h2>
+    </div>
     <hr>
     <p class="error" v-if="error">{{error}}</p>
     <div class="hash-container">
@@ -29,7 +35,9 @@ export default {
     return {
       hashes:'',
       error: '',
-      data: ''
+      data: '',
+      result:'',
+      find:'',
     }
   },
   async created(){
@@ -45,6 +53,11 @@ export default {
       await handler.sendHash(this.data);
       this.hashes = await handler.tes();
       this.data = "";
+    },
+    async findIT(){
+      var x = await handler.findHash(this.find);
+      this.find = "";
+      this.result = x;
     }
   }
 }

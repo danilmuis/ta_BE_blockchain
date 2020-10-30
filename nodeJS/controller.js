@@ -24,6 +24,14 @@ exports.contract = async function(req,res){
         'Transaction Address' : data.split('\n')[0]
     });
 }
+exports.find = async function(req,res){
+    var hashes = await blockchain.loadHash(konek);
+    var find = hashes.find(function(element){
+        return element==req.body.find;
+    });
+
+    res.json({'hash':find});
+}
 
 exports.findUsers = function(req,res){
     var id = req.params.id
