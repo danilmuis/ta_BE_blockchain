@@ -6,19 +6,27 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 //var mdm = require('./nodeJS/mdm');
 
-var konek = require('./nodeJS/konek_blockchain');
-var blockchain = require('./nodeJS/methodBlockchain');
+var konek = require('./konek_blockchain');
+var blockchain = require('./methodBlockchain');
 
 
-var controller = require('./nodeJS/controller');
+var controller = require('./controller');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-var routes = require('./nodeJS/routes');
-routes(app);
+var routes = require('./routes');
+// routes(app);
+app.use('/api',routes);
 
+//handle production
+//if(process.env.NODE_ENV === 'production'){
+    app.use(express.static(__dirname + '/public'));
+
+    //HANDLE SPA
+    app.get(/.*/,(req,res) => res.sendFile(__dirname + '/public/index.html'));
+//}
 run();
 
 async function run(){
@@ -30,6 +38,6 @@ async function run(){
     //console.log(await contract.methods.loadHash().call());
     //var x = contract.methods.loadHash().call();
     //console.log(contract);
-    app.listen(port)
+    app.listen(port,'127.0.0.1')
     console.log('server start on port ' + port)
 };

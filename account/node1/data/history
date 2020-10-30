@@ -13,3 +13,4 @@ contract=web3.eth.contract(abi)
 simple=contract.at(contractAddress)
 simple.loadHash()
 admin.peers
+eth
