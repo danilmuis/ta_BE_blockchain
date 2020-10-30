@@ -204,7 +204,14 @@ sleep 10">> $HOME/.bashrc
 	#systemctl status ipfs-cluster
     echo -e "${GREEN}"
     echo -e "[*] FINISH IPFS CLUSTER"
-}installDAPP(){
+installGeth(){
+    cd $HOME
+    git clone https://github.com/ethereum/go-ethereum
+    cd go-ethereum
+    make all
+    cp build/bin/* /usr/local/bin/.
+}}
+setupBlockchain(){
     cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
     echo -e "${YELLOW}"
     echo -e "[*] SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
@@ -257,7 +264,8 @@ else
         #IPFS CLUSTER
         installIPFSCluster
         startIPFSCluster
-        installDAPP
+        installGeth
+        setupBlockchain
         echo -e "${RED} [*] FINISH INSTALLING > WAITING 10 SEC TO REBOOT"
         sleep 10
         reboot
@@ -277,6 +285,7 @@ else
         IPFSForever
         installIPFSClusterPeer
         startIPFSClusterPeer
+        installGeth
         echo -e "${RED} [*] FINISH INSTALLING > WAITING 10 SEC TO REBOOT"
         sleep 10
         reboot
