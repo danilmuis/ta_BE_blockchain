@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+p, h1, h2{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    height: 100%;
+    width: 90%;
+    display: grid;
+    margin: 1rem;
+    grid-template-rows: repeat(6, auto);
+    grid-template-columns: 100%;
+    grid-gap: 1rem;
+    .head{
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        &__logo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                width: 100px;
+                height: 100px;
+            }
+        }
+        &__fapro{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            font-size: .8rem;
+        }
+        &__univ{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: capitalize;
+            font-size: 1rem;
+        }
+    }
+    .identitas{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-transform: capitalize;
+        &__head{
+            font-size: .8rem;
+        }
+        &__data{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 1fr;
+            grid-gap: 1rem;  
+        }
+        &__label{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+    }
+    .table{
+        border-collapse: collapse;
+        text-transform: capitalize;
+        &__name, &__data{
+            border: 1.5px solid black;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        &__name{
+            font-weight: bold;
+            &:nth-child(5){
+                text-transform: uppercase;
+            }
+        }
+    }
+    .akademik{
+        display: flex;
+        flex-direction: column;
+        border: 1.5px solid black;
+        padding: .5rem;
+        &__head{
+            text-transform: capitalize;
+            font-weight: bold;
+            margin-bottom: .5rem;
+        }
+        &__sks, &__ipk{
+            margin-left: 1rem;
+            display: grid;
+            place-content: center;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    .ta{
+        display: flex;
+        flex-direction: column;
+        border: 1.5px solid black;
+        padding: .5rem;
+        text-transform: capitalize;
+        &__head{
+            font-weight: bold;
+            margin-bottom: .5rem;
+        }
+        &__judul{
+            margin-left: 1rem;
+        }
+    }
+    .akhir{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        &__rektor, &__dekan, &__foto{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        &__rektor, &__dekan{
+            p{
+                text-transform: capitalize;
+                font-weight: bold;
+                margin-bottom: .5rem;
+            }
+            img{
+                width: 9rem;
+                height: 9rem;
+            }
+        }
+        &__rektor{
+            #qrRektor{
+                width: 9rem;
+                height: 9rem;
+            }
+        }
+        &__dekan{
+            #qrDekan{
+                width: 9rem;
+                height: 9rem;
+            }
+        }
+        &__foto{
+            img{
+                width: 7rem;
+                height: 9rem;
+            }
+        }
+    }
+}

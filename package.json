@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo tesx",
     "start": "node nodeJS/server.js",
-    "develop": "nodemon nodeJS/server.js",
+    "dev": "nodemon nodeJS/server.js",
     "mdm": "whoami",
     "create": "node ./nodeJS/createContract"
   },
@@ -19,9 +19,16 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "helmet": "^4.1.1",
+    "express-fileupload": "^1.2.0",
+    "helmet": "^4.2.0",
+    "html-pdf": "^2.2.0",
     "joi": "^17.3.0",
+    "morgan": "^1.10.0",
+    "node-html-to-image": "^3.1.0",
+    "pdfkit": "^0.11.0",
+    "puppeteer": "^5.4.1",
     "web3": "^1.3.0"
   }
 }

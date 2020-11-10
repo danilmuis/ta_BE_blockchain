@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Sivil Chain - Verify</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="shorcut icon" href="/public/img/ristekdikti2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html,
+        body {
+            background-color: #1c3b61;
+            color: #555;
+            font-family: 'Raleway', sans-serif;
+            height: 100%;
+        }
+
+        #page-content {
+            flex: 1 0 auto;
+        }
+
+        .box {
+            position: relative;
+            background: #ffffff;
+            width: 100%;
+        }
+
+        .box-header {
+            color: #444;
+            display: block;
+            padding: 10px;
+            position: relative;
+            border-bottom: 1px solid #f4f4f4;
+            margin-bottom: 10px;
+        }
+
+        .box-tools {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+        }
+
+        .dropzone-wrapper {
+            border: 2px dashed darkorange;
+            color: white;
+            position: relative;
+            height: 150px;
+        }
+
+        .dropzone-desc {
+            position: absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            text-align: center;
+            width: 40%;
+            top: 50px;
+            font-size: 16px;
+        }
+
+        .dropzone,
+        .dropzone:focus {
+            position: absolute;
+            outline: none !important;
+            width: 100%;
+            height: 150px;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .dropzone-wrapper:hover,
+        .dropzone-wrapper.dragover {
+            background: black;
+        }
+
+        .preview-zone {
+            text-align: center;
+        }
+
+        .preview-zone .box {
+            box-shadow: none;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+
+        .vr:hover {
+            color: black;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column">
+    <div id="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="/public/img/ristekdikti.png" alt="" width='150em' style="margin-top:50px;">
+                    <h1
+                        style="color: #fff;  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                        SIVIL-CHAIN</h1>
+                    <h6
+                        style="color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                        Sistem Verifikasi Dokumen Elektronik Ijazah dan Transkrip Berbasis Blockchain</h6>
+                    <hr style="background-color:darkorange;">
+                    <h6
+                        style="color: #fff; margin-top: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                        Untuk memastikan keabsahan ijazah dan transkrip
+                        anda, pastikan
+                        file ijazah dan transkrip anda dapat diverifikasi melalui SIVIL.
+                        <BR>Apabila file ijazah dan transkrip tidak terdaftar, silakan hubungi Perguruan Tinggi
+                        yang menerbitkan ijazah dan transkrip untuk memastikan data anda telah dilaporkan melalui
+                        PD-DIKTI.
+                    </h6>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" style="margin-top: 150px;">
+                        <div class="preview-zone hidden">
+                            <div class="box box-solid">
+                                <div class="box-header" style="background-color: darkorange;">
+
+                                </div>
+                                <div class="box-body"></div>
+                            </div>
+                        </div>
+                        <div class="dropzone-wrapper">
+                            <div class="dropzone-desc">
+                                <i class="glyphicon glyphicon-download-alt"></i>
+                                <p>Seret dan Jatuhkan File Anda atau <br><button>Pilih File</button></p>
+                            </div>
+                            <input type="file" accept="application/pdf" id="hashFile" class="dropzone" name="img_logo">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type='button' id="findHashButton" onclick="find()" class="btn btn-primary vr"
+                            style="background-color:darkorange;">
+                            <B style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Verifikasi <i
+                                    class="fa fa-check-square"></i></B>
+                        </button>
+                        <div id="wait"
+                            style="display:none; width:100px; height:90px; position:absolute; top:86%; left:30%;padding:2px;">
+                            <img src='/public/img/spiner.gif' width="64" height="64" /><br>
+                            <p style="color: white;">Loading..</p>
+                        </div>
+                    </div>
+                    <div id="txt">
+
+                        <div id="responseText" style="color:white"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer id="sticky-footer" style="font-size:13px; background-color: #081228;">
+        <div class="container text-center pt-2 pb-2 ">
+            <h7 style="color:#faf9e8;">Fakultas Informatika</h7> <br />
+            <h7 style="color:#faf9e8;">Copyright &copy; 2020 Sivil-Chain</h7> <br />
+            <h7 style="color:#faf9e8;"><sup>1</sup>Parman Sukarno, Ph.D - <sup>2</sup>Aulia Arif Wardana, M.T -
+                <sup>3</sup>Nero
+                Chaniago</h7><br>
+            <h7 style="color:#faf9e8;">Telkom University</h7>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+    </script>
+
+    <script>
+        function readFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var htmlPreview =
+                        '<img width="200" src="' + e.target.result + '" />' +
+                        '<p>' + input.files[0].name + '</p>';
+                    var wrapperZone = $(input).parent();
+                    var previewZone = $(input).parent().parent().find('.preview-zone');
+                    var boxZone = $(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+
+                    wrapperZone.removeClass('dragover');
+                    previewZone.removeClass('hidden');
+                    boxZone.empty();
+                    boxZone.append(htmlPreview);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function reset(e) {
+            e.wrap('<form>').closest('form').get(0).reset();
+            e.unwrap();
+        }
+        $(".dropzone").change(function () {
+            readFile(this);
+        });
+        $('.dropzone-wrapper').on('dragover', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).addClass('dragover');
+        });
+        $('.dropzone-wrapper').on('dragleave', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).removeClass('dragover');
+        });
+        $('.remove-preview').on('click', function () {
+            var boxZone = $(this).parents('.preview-zone').find('.box-body');
+            var previewZone = $(this).parents('.preview-zone');
+            var dropzone = $(this).parents('.form-group').find('.dropzone');
+            boxZone.empty();
+            previewZone.addClass('hidden');
+            reset(dropzone);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).ajaxStart(function () {
+                $("#wait").css("display", "block");
+            });
+            $(document).ajaxComplete(function () {
+                $("#wait").css("display", "none");
+            });
+            $("button").click(function () {
+                $("#txt").load("/public/js/app.js/#responseText");
+            });
+        });
+    </script>
+
+
+    <script src="/public/js/sha256.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.js"></script>
+    <script src="/public/js/notaryWebLib.js"></script>
+    <script src="/public/js/app.js"></script>
+    <script src="/public/fortmatic/dist/fortmatic.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+
+</html>

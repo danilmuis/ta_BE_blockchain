@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+}
+
+p, h1, h2 {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100%;
+  width: 90%;
+  display: -ms-grid;
+  display: grid;
+  margin: 1rem;
+  -ms-grid-rows: (auto)[6];
+      grid-template-rows: repeat(6, auto);
+  -ms-grid-columns: 100%;
+      grid-template-columns: 100%;
+  grid-gap: 1rem;
+}
+
+.container .head {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (auto)[3];
+      grid-template-columns: repeat(3, auto);
+}
+
+.container .head__logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .head__logo img {
+  width: 100px;
+  height: 100px;
+}
+
+.container .head__fapro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-transform: capitalize;
+  font-size: .8rem;
+}
+
+.container .head__univ {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-transform: capitalize;
+  font-size: 1rem;
+}
+
+.container .identitas {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-transform: capitalize;
+}
+
+.container .identitas__head {
+  font-size: .8rem;
+}
+
+.container .identitas__data {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  grid-gap: 1rem;
+}
+
+.container .identitas__label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.container .table {
+  border-collapse: collapse;
+  text-transform: capitalize;
+}
+
+.container .table__name, .container .table__data {
+  border: 1.5px solid black;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.container .table__name {
+  font-weight: bold;
+}
+
+.container .table__name:nth-child(5) {
+  text-transform: uppercase;
+}
+
+.container .akademik {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 1.5px solid black;
+  padding: .5rem;
+}
+
+.container .akademik__head {
+  text-transform: capitalize;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+.container .akademik__sks, .container .akademik__ipk {
+  margin-left: 1rem;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+}
+
+.container .ta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 1.5px solid black;
+  padding: .5rem;
+  text-transform: capitalize;
+}
+
+.container .ta__head {
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+.container .ta__judul {
+  margin-left: 1rem;
+}
+
+.container .akhir {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+}
+
+.container .akhir__rektor, .container .akhir__dekan, .container .akhir__foto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .akhir__rektor p, .container .akhir__dekan p {
+  text-transform: capitalize;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+.container .akhir__rektor img, .container .akhir__dekan img {
+  width: 9rem;
+  height: 9rem;
+}
+
+.container .akhir__rektor #qrRektor {
+  width: 9rem;
+  height: 9rem;
+}
+
+.container .akhir__dekan #qrDekan {
+  width: 9rem;
+  height: 9rem;
+}
+
+.container .akhir__foto img {
+  width: 7rem;
+  height: 9rem;
+}
+/*# sourceMappingURL=transkrip.css.map */

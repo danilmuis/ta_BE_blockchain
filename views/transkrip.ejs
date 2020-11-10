@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <!-- Load Bootstrap 4 CSS | DO NOT REMOVE -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="">
+
+    <!-- Load Bootstrap 4 & Jquery | DO NOT REMOVE -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+    <!-- Required META tag by Bootstrap | DO NOT REMOVE -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Load Layout Base Tag -->
+    <link rel="stylesheet" type="text/css" href="/public/css/base_styles.css">
+    <link rel="shorcut icon" href="/public/img/ristekdikti2.png">
+    <title>Admin - Input Transkrip</title>
+    <!-- Input CSS atau JS yang dibutuhkan setelah line ini -->
+    <!-- Taruh file css di folder /css-->
+    <!-- Taruh file js di /js-->
+
+    <!-- Contoh cara input css, ganti sesuai kebutuhan -->
+</head>
+
+<body>
+
+    <div class="container-fluid p-0">
+        <div class="row equal no-gutters">
+            <%- include("sidebar.ejs") %>
+            <div class="col-12 col-sm-8 col-md-9 col-xl-10 wrapper">
+                <%- include("topmenu.ejs") %>
+                <div class="col-12 wrapper-container">
+                    <div class="main-wrapper">
+                        <div class="container">
+
+                            <div class="row">
+                                <!-- Silakan masukkan code tampilan divisi Anda di bagian ini. -->
+
+                                <!-- Dibawah ini adalah template box yang kalian bisa pakai untuk pengembangan sistem -->
+                                <div class="col-md-12">
+                                    <% if (typeof message !== 'undefined') { %>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <%= message %>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <% } %>
+                                    <div class="box">
+                                        <div class="box-header">
+                                            Input Transkrip
+                                        </div>
+                                        <div class="box-body">
+                                            <form action="/transkrip" method="post" enctype="multipart/form-data">
+                                                <div id="form">
+                                                    <div class="form-group">
+                                                        <label for="nomor">Nomor</label>
+                                                        <input name='nomor' type="text" class="form-control" id="nomor">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="nomorRektor">Nomor Keputusan Rektor</label>
+                                                        <input name='nomorRektor' type="text" class="form-control"
+                                                            id="nomorRektor">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="logo">Logo Universitas</label>
+                                                        <input name='logo' type="file" class="form-control" id="logo"
+                                                            accept="image/png">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="pas">Pas Foto</label>
+                                                        <input name='pas' type="file" class="form-control" id="pas"
+                                                            accept="image/jpg, image/jpeg">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="lembaga">Nama Lembaga</label>
+                                                        <input name='lembaga' type="text" class="form-control"
+                                                            id="lembaga">
+                                                    </div>
+                                                    <div class=" form-group">
+                                                        <label for="exampleFormControlInput1">Nama</label>
+                                                        <input name='nama' type="text" class="form-control"
+                                                            id="exampleFormControlInput1">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="ttl">Tempat, Tanggal Lahir</label>
+                                                        <input name='ttl' type="text" class="form-control" id="ttl">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="nim">Nomor Induk Mahasiswa</label>
+                                                        <input name='nim' type="text" class="form-control" id="nim">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="jenjang">Jenjang Pendidikan</label>
+                                                        <select class="form-control" id="jenjang" name="jenjang">
+                                                            <option selected>-- Pilih Jenjang Pendidikan --</option>
+                                                            <option>S1</option>
+                                                            <option>S2</option>
+                                                            <option>S3</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="fakultas">Fakultas</label>
+                                                        <input name='fakultas' type="text" class="form-control"
+                                                            id="fakultas">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="prodi">Program Studi</label>
+                                                        <input name='prodi' type="text" class="form-control" id="prodi">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="tglLulus">Tanggal Lulus</label>
+                                                        <input name='tglLulus' type="date" class="form-control"
+                                                            id="tglLulus">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="ta">Judul Tugas Akhir</label>
+                                                        <input name='ta' type="text" class="form-control" id="ta">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="rektor">Rektor</label>
+                                                        <input name='rektor' type="text" class="form-control"
+                                                            id="rektor">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="rektor">NIP Rektor</label>
+                                                        <input name='nipRektor' type="text" class="form-control"
+                                                            id="nipRektor">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="dekan">Dekan</label>
+                                                        <input name='dekan' type="text" class="form-control" id="dekan">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="dekan">NIP Dekan</label>
+                                                        <input name='nipDekan' type="text" class="form-control"
+                                                            id="nipDekan">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="dekan">IPK</label>
+                                                        <input name='ipk' type="text" class="form-control" id="ipk">
+                                                    </div>
+                                                </div>
+                                                <div class="btn btn-success" id="add">Add Mata Kuliah</div>
+                                                <button type="submit" class="btn btn-primary"
+                                                    style="background-color:#1c3b61;">Add Transkrip</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+        integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(() => {
+            // let idx = $(".form-group.row").length
+            $("#add").click(() => {
+                let isi = `<div class="form-group row"">\
+                                <div class="col-md-2">\
+                                    <label for="kode_matkul">Kode Makul</label>\
+                                    <input class="form-control" type="text" name="kode_matkul" id="kode_matkul">\
+                                </div>\
+                                <div class="col-md-2">\
+                                    <label for="matkul">Mata Kuliah</label>\
+                                    <input class="form-control" type="text" name="matkul" id="matkul">\
+                                </div>\
+                                <div class="col-md-2">\
+                                    <label for="semester">Semester</label>\
+                                    <input class="form-control" type="text" name="semester" id="semester">\
+                                </div>\
+                                <div class="col-md-2">\
+                                    <label for="sks">SKS</label>\
+                                    <input class="form-control" type="text" name="sks" id="sks">\
+                                </div>\
+                                <div class="col-md-2">\
+                                    <label for="nilai">Nilai</label>\
+                                    <input class="form-control" type="text" name="nilai" id="nilai">\
+                                </div>\
+                                <div class="col-md-2 d-flex justify-content-center align-items-center">\
+                                    <div class="btn btn-danger btn-remove" onclick="$(this).parents('.form-group.row').remove()">X</div>\
+                                </div>\
+                            </div>`
+
+                $("#form").append(isi)
+            })
+        })
+    </script>
+
+</body>
+
+</html>

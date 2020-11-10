@@ -1,7 +1,11 @@
-var express = require('express');
 require('dotenv').config();
+var express = require('express');
+const path = require('path');
+const fileUpload = require('express-fileupload');
+const morgan = require('morgan');
+const helmet = require('helmet');
 var app = express();
-var port = 9000;
+var port = process.env.PORT || 9000;
 var cors = require('cors');
 var bodyParser = require('body-parser');
 //var mdm = require('./nodeJS/mdm');
@@ -10,23 +14,22 @@ var konek = require('./konek_blockchain');
 var blockchain = require('./methodBlockchain');
 
 
-var controller = require('./controller');
-
+app.use(morgan);
+app.use(helmet);
+app.use('/public',express.static('static'));
+app.set('view engine', 'ejs')
+app.use(fileUpload())
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+var controller = require('./controller');
 
 var routes = require('./routes');
 // routes(app);
-app.use('/api',routes);
+app.use('/',routes);
+app.post('/mdm',controller.generateSertifikat);
 
-//handle production
-//if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(__dirname + '/public'));
-
-    //HANDLE SPA
-    app.get(/.*/,(req,res) => res.sendFile(__dirname + '/public/index.html'));
-//}
 run();
 
 async function run(){
@@ -38,6 +41,6 @@ async function run(){
     //console.log(await contract.methods.loadHash().call());
     //var x = contract.methods.loadHash().call();
     //console.log(contract);
-    app.listen(port,'127.0.0.1')
-    console.log('server start on port ' + port)
+    app.listen(port,'127.0.0.1');
+    console.log(`server start on http://localhost:${port} `);
 };

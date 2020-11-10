@@ -204,13 +204,14 @@ sleep 10">> $HOME/.bashrc
 	#systemctl status ipfs-cluster
     echo -e "${GREEN}"
     echo -e "[*] FINISH IPFS CLUSTER"
+}
 installGeth(){
     cd $HOME
     git clone https://github.com/ethereum/go-ethereum
     cd go-ethereum
     make all
     cp build/bin/* /usr/local/bin/.
-}}
+}
 setupBlockchain(){
     cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
     echo -e "${YELLOW}"

@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
+body {
+  background-color: #efefef;
+}
+
+.sidebar-container {
+  min-height: 100vh;
+  background: #404040;
+}
+
+nav .container-fluid {
+  position: relative;
+}
+
+nav .sidebar {
+  width: 100%;
+  position: absolute;
+}
+
+nav .sidebar .headers {
+  height: 50px;
+  display: block;
+  text-align: center;
+}
+
+nav .sidebar .menu {
+  /* padding: 15px; */
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+nav .sidebar .menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav .sidebar .menu ul a {
+  color: #ffffff;
+}
+
+nav .sidebar .menu ul a:hover {
+  text-decoration: none;
+}
+
+nav .sidebar .menu .tree-dropdown {
+  background: #5d5d5d;
+}
+
+nav .sidebar .menu .tree-dropdown ul {
+  box-shadow: inset 0px 5px 10px -5px rgba(0, 0, 0, 1);
+}
+
+nav .sidebar .menu .tree-dropdown text {
+  margin-left: 25px;
+}
+
+nav .sidebar .menu ul li {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+nav .sidebar .menu ul li ion-icon {
+  width: 25px;
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+nav .sidebar .menu ul li ion-icon,
+nav .sidebar .menu ul li text {
+  vertical-align: middle;
+}
+
+nav .sidebar .menu ul li text {
+  font-size: 14px;
+}
+
+.top-menu-container {
+  background-image: linear-gradient(to right, #1c3b61, #1c3b61, #1c3b61, #1c3b61, #081228);
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  z-index: 10;
+}
+
+.top-menu {
+  position: relative;
+  height: 50px;
+}
+
+.top-menu .bar {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.top-menu .bar a {
+  color: #fff;
+}
+
+.top-menu .bar ion-icon {
+  font-size: 25px;
+}
+
+.top-menu .bar.force-right {
+  position: absolute;
+  right: 10px;
+}
+
+.top-menu .bar .profile-picture {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: #dfdfdf;
+}
+
+.top-menu .bar.force-right .profile-popup {
+  top: 25px;
+  width: 300px;
+  position: absolute;
+  right: 0;
+  border-radius: 0 0 5px 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+  color: #191919;
+  padding: 10px;
+}
+
+.top-menu .bar.force-right .profile-popup-body {
+  text-align: center;
+}
+
+.top-menu .bar.force-right .profile-popup-body a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.top-menu .bar.force-right .profile-popup-body .picture {
+  margin: 0 auto;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  background-color: #dfdfdf;
+  margin: 15px auto;
+}
+
+.top-menu .bar.force-right .profile-popup-body .text {
+  margin-top: 25px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.top-menu .bar.force-right .profile-popup-body .logout {
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-image: linear-gradient(to right, #e41b13, #d31a13, #c21913, #b11813, #a11712);
+}
+
+.top-menu .bar.force-right .profile-popup-body .logout:hover {
+  background-image: linear-gradient(to right, #1976d2, #036dd1, #0063d0, #0059ce, #0b4ecb);
+}
+
+/* Main Wrapper */
+.wrapper.visible {
+  left: 75% !important;
+  position: absolute;
+}
+
+.main-wrapper {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.main-wrapper .page-header {
+  margin-bottom: 30px;
+}
+
+.main-wrapper .page-header .page-title {
+  font-family: "Quicksand", sans-serif;
+  font-size: 35px;
+}
+
+.main-wrapper .page-header .page-subtitle {
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+}
+
+.main-wrapper .row .box {
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+  background: #fff;
+}
+
+.main-wrapper .row .box-header {
+  border-bottom: 2px solid #1c3b61;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.main-wrapper .row .box-body {
+  font-size: 14px;
+}
+
+.main-wrapper .row .box-footer {
+  font-size: 14px;
+  text-align: center;
+  /* border-top: 2px solid rgba(0, 0, 0, .1); */
+  padding-top: 5px;
+  margin-top: 5px;
+}

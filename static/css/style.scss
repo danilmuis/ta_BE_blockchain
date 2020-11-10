@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap');
+
+$bg: #535353;
+$bg2: #282828;
+$tombol: #00796B;
+$tombol-hover: #00695C;
+$tombol-active: #004D40;
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+input,
+button {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.sertifikat {
+    height: 100%;
+    width: 100%;
+
+    .latar {
+        position: relative;
+
+        img {
+            width: 900px;
+            height: 600px;
+        }
+    }
+
+    .data {
+        position: absolute;
+        width: 900px;
+        height: 600px;
+        top: 0;
+        display: grid;
+        grid-template-areas:
+            "a b . e"
+            "a b . ."
+            ". c . ."
+            "d d d d";
+
+
+        .qrTx {
+            grid-area: e;
+            height: 80px;
+            width: 80px;
+            padding: 30px 30px 15px 30px;
+            display: flex;
+            flex-direction: column-reverse;
+
+            p {
+                font-size: 10pt;
+                font-weight: 300;
+            }
+
+            #qrTrans,
+            #qrTransPrint,
+            img {
+                height: 50px;
+                width: 50px;
+            }
+
+        }
+
+        .atas {
+            font-size: 20pt;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            grid-area: a;
+
+            p {
+                padding: 30px 30px 15px 30px;
+                text-transform: uppercase;
+            }
+
+            img {
+                height: 100px;
+                width: 100px;
+                // margin-left: 3vw;
+
+            }
+        }
+
+        .batang-tubuh {
+            padding-top: 30px;
+            margin-left: -50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14pt;
+            grid-area: b;
+
+            .univ {
+                font-size: 20pt;
+                text-transform: capitalize;
+            }
+
+            .bagian-atas {
+                display: flex;
+                flex-direction: column;
+
+                .nomor {
+                    display: flex;
+                    margin-top: 40px;
+
+                    p:first-child {
+                        text-transform: capitalize;
+                        padding-left: 25px;
+                    }
+
+                    p:last-child {
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            .data-ijazah {
+                margin-top: 15px;
+                display: grid;
+                font-weight: bold;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 1.5em;
+
+                .idk {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    text-transform: capitalize;
+                }
+
+                .pisahan {
+                    text-transform: capitalize;
+                }
+            }
+
+        }
+
+        .perpisahan {
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            justify-content: center;
+            font-size: 14pt;
+            margin-top: -70px;
+            grid-area: c;
+
+            p:first-child {
+                padding-left: 25px;
+            }
+
+            p:nth-child(2) {
+                font-weight: bold;
+                justify-self: center;
+            }
+        }
+
+        .ttd {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            grid-area: d;
+
+            .qr {
+                height: 100px;
+                width: 100px;
+                margin-top: 25px;
+
+                img {
+                    height: 100px;
+                    width: 100px;
+                }
+            }
+
+            .rektor {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                p {
+                    text-transform: capitalize;
+                }
+            }
+
+            .dekan {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                p {
+                    text-transform: capitalize;
+                }
+            }
+
+            .poto {
+
+                img {
+                    height: 10em;
+                    width: 8em;
+                }
+            }
+        }
+    }
+}
+
+.tombol-print {
+    cursor: pointer;
+    position: fixed;
+    margin-top: -7em;
+    right: 0;
+
+    .show {
+        display: block !important;
+    }
+
+    img {
+        height: 100px;
+        width: 100px;
+    }
+}

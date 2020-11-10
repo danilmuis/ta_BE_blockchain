@@ -1,0 +1,295 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button {
+  font-family: 'Source Serif Pro',
+    serif;
+}
+
+.sertifikat {
+  height: 100%;
+  width: 100%;
+}
+
+.sertifikat .latar {
+  position: relative;
+}
+
+.sertifikat .latar img {
+  width: 900px;
+  height: 600px;
+}
+
+.sertifikat .data {
+  position: absolute;
+  width: 900px;
+  height: 600px;
+  top: 0;
+  display: -ms-grid;
+  display: grid;
+  grid-template-areas: "a b . e"
+    "a b . ."
+    ". c . ."
+    "d d d d";
+}
+
+.sertifikat .data .qrTx {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: e;
+  height: 80px;
+  width: 80px;
+  padding: 30px 30px 15px 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+.sertifikat .data .qrTx p {
+  font-size: 10pt;
+  font-weight: 300;
+}
+
+.sertifikat .data .qrTx #qrTrans,
+.sertifikat .data .qrTx #qrTransPrint,
+.sertifikat .data .qrTx img {
+  height: 50px;
+  width: 50px;
+}
+
+.sertifikat .data .atas {
+  font-size: 20pt;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 1;
+  grid-area: a;
+
+}
+
+.sertifikat .data .atas p {
+  padding: 30px 30px 15px 30px;
+  font-family: 'Pacifico',
+    cursive;
+}
+
+.sertifikat .data .atas img {
+  height: 100px;
+  width: 100px;
+}
+
+.sertifikat .data .batang-tubuh {
+  padding-top: 30px;
+  margin-left: -50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 14pt;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 2;
+  grid-area: b;
+}
+
+.sertifikat .data .batang-tubuh .univ {
+  font-size: 20pt;
+  text-transform: capitalize;
+  font-weight: bold;
+  font-family: proxima-nova,
+    sans-serif;
+}
+
+.sertifikat .data .batang-tubuh .bagian-atas {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.sertifikat .data .batang-tubuh .bagian-atas .nomor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 40px;
+  font-family: 'Source Serif Pro',
+    serif;
+}
+
+.sertifikat .data .batang-tubuh .bagian-atas .nomor p:first-child {
+  text-transform: capitalize;
+  padding-left: 25px;
+}
+
+.sertifikat .data .batang-tubuh .bagian-atas .nomor p:last-child {
+  margin-left: 10px;
+}
+
+.sertifikat .data .batang-tubuh .data-ijazah {
+  margin-top: 15px;
+  display: -ms-grid;
+  display: grid;
+  font-weight: bold;
+  -ms-grid-columns: (1fr)[2];
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1.5em;
+}
+
+.sertifikat .data .batang-tubuh .data-ijazah .idk {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  text-transform: capitalize;
+}
+
+.sertifikat .data .batang-tubuh .data-ijazah .pisahan {
+  text-transform: capitalize;
+}
+
+.sertifikat .data .perpisahan {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[3];
+  grid-template-rows: repeat(3, 1fr);
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 14pt;
+  margin-top: -70px;
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: c;
+}
+
+.sertifikat .data .perpisahan p:first-child {
+  padding-left: 25px;
+}
+
+.sertifikat .data .perpisahan p:nth-child(2) {
+  font-weight: bold;
+  -ms-grid-column-align: center;
+  justify-self: center;
+}
+
+.sertifikat .data .ttd {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  margin-top: 10px;
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 4;
+  grid-area: d;
+}
+
+.sertifikat .data .ttd .qr {
+  height: 100px;
+  width: 100px;
+  margin-top: 25px;
+}
+
+.sertifikat .data .ttd .qr img {
+  height: 100px;
+  width: 100px;
+}
+
+.sertifikat .data .ttd .rektor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.sertifikat .data .ttd .rektor p {
+  text-transform: capitalize;
+}
+
+.sertifikat .data .ttd .dekan {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.sertifikat .data .ttd .dekan p {
+  text-transform: capitalize;
+}
+
+.sertifikat .data .ttd .poto img {
+  height: 10em;
+  width: 8em;
+}
+
+.tombol-print {
+  cursor: pointer;
+  position: fixed;
+  margin-top: -7em;
+  right: 0;
+}
+
+.tombol-print .show {
+  display: block !important;
+}
+
+.tombol-print img {
+  height: 100px;
+  width: 100px;
+}
+
+/*# sourceMappingURL=style.css.map */
