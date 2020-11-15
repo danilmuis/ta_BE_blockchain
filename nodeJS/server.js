@@ -14,12 +14,14 @@ var konek = require('./konek_blockchain');
 var blockchain = require('./methodBlockchain');
 
 
-app.use(morgan);
-app.use(helmet);
+app.use(morgan('common'));
+app.use(helmet());
 app.use('/public',express.static('static'));
 app.set('view engine', 'ejs')
 app.use(fileUpload())
-app.use(cors());
+app.use(cors({
+    origin: `http://127.0.0.1:${port}`
+}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -28,6 +30,21 @@ var controller = require('./controller');
 var routes = require('./routes');
 // routes(app);
 app.use('/',routes);
+//Error handler
+app.use((req,res,next) =>{
+    const error = new Error(`NOT FOUND BRUH - ${req.originalUrl}`);
+    res.status(404);
+    next(error);
+});
+app.use((error,req,res,next) =>{
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+    res.status(statusCode);
+    res.json({
+        message : error.message,
+        stack : error.stack,
+    });
+});
+
 app.post('/mdm',controller.generateSertifikat);
 
 run();

@@ -44,3 +44,10 @@ contract=web3.eth.contract(abi)
 simple=contract.at(contractAddress)
 
 
+#IPFS
+ipfs-cluster-ctl add file
+ipfs-cluster-ctl pin ls | awk '{print $2}' > x
+ifps cat hashfile
+ipfs cat $(cat x)
+
+

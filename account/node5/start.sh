@@ -1,2 +1,2 @@
-cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
+cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node5
 geth --networkid 9999 --datadir "./data" --bootnodes enode://b86bf4d38bdd55b858e0939d5777927089eca70babb2d7876c505c9b060bc5cfda1a254460810cd7363885c15a354b6e33281a7d5f6285b177a8e970340aaf8b@192.168.18.52:0?discport=30301 --port 30307 --ipcdisable --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8549 --unlock 0x6E9C70270cd324e357c1098ea8a957999F09Cf31 --password password.txt --mine console

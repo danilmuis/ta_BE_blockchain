@@ -172,7 +172,7 @@ sleep 10">> $HOME/.bashrc
     sleep 10
     CLUSTER_IPFS_ID=$($GOPATH/bin/ipfs-cluster-ctl id | awk '{print $2}' | grep 9096 | grep -v 127.0.0.1)
     echo -e "YOUR CLUSTER IPFS ID : ${CLUSTER_IPFS_ID}"
-    echo -e "export CLUSTER_IPFS_ID=${CLUSTER_IPFS_ID}"
+    echo "export CLUSTER_IPFS_ID=${CLUSTER_IPFS_ID}"
     echo "${CLUSTER_IPFS_ID}" > /var/www/html/cluster_ipfs.txt
     echo -e "${GREEN}"
     echo -e "[*] FINISH IPFS CLUSTER"
@@ -216,12 +216,12 @@ setupBlockchain(){
     cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
     echo -e "${YELLOW}"
     echo -e "[*] SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
-    echo "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode &
+    echo -e "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     sleep 5
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
     sleep 15
     npm start &">> $HOME/.bashrc
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode &
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
     npm install
     npm run create

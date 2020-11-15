@@ -39,35 +39,9 @@ exports.generateSertifikat = async function(req,res){
     await page.pdf({ path: 'final.pdf', width: '600px', height: '403px' });
     await browser.close();
     console.log("DONE PDF ");
-//    const nodeHtmlToImage = require('node-html-to-image')
-// await nodeHtmlToImage({
-//   output: './image.png',
-//   html: html,
-// })
-//   .then(() => console.log('The image was created successfully!'));
-//   var PDFDocument = require('pdfkit');
-//   var doc = new PDFDocument
 
-// //Pipe its output somewhere, like to a file or HTTP response 
-// //See below for browser usage 
-//     doc.pipe(fs.createWriteStream('output.pdf'))
-
-
-//     //Add an image, constrain it to a given size, and center it vertically and horizontally 
-//     doc.image('./image.png', {
-//     fit: [600, 700],
-//     align: 'center',
-//     valign: 'center'
-//     });
-
-
-
-//     doc.end()
   res.send(html);
     
-    // res.render('sertifikat', {
-    //     data: req.body
-    // });
 }
 exports.buatHTML = async function(req,res){
     var template = fs.readFileSync('template.html','utf8');

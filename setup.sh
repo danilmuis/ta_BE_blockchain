@@ -17,6 +17,7 @@ installGo(){
     echo -e ""
     echo -e "${YELLOW}"
     echo -e "[*] INSTALLING GOLANG VERSION 1.15.2"
+    cd $HOME
     wget https://golang.org/dl/go1.15.2.linux-amd64.tar.gz
     tar -xvf go1.15.2.linux-amd64.tar.gz 
     mv go /usr/local
@@ -50,7 +51,8 @@ installNodeJS(){
     wget https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz
     mkdir -p /usr/local/lib/nodejs
     tar -xJvf node-v12.19.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
-    export PATH=/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin:$PATH
+    echo "export PATH=/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin:$PATH"
+    echo "export PATH=/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin:$PATH" >> $HOME/.bashrc
 }
 cd $HOME
 installDependencies
