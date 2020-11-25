@@ -33,11 +33,11 @@ installGo(){
     tar -xvf go1.15.2.linux-amd64.tar.gz 
     mv go /usr/local
     mkdir $HOME/gopath
-    echo 'export GOROOT=/usr/local/go' >> $HOME/.bashrc
+    echo 'export GOROOT=/usr/local/go' >> /etc/profile
     GOROOT=/usr/local/go
-    echo 'export GOPATH=$HOME/gopath' >> $HOME/.bashrc
+    echo 'export GOPATH=$HOME/gopath' >> /etc/profile
     GOPATH=$HOME/gopath
-    echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> $HOME/.bashrc
+    echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> /etc/profile
     /usr/local/go/bin/go version
     echo -e "${GREEN}"
     echo -e "[*] FINISH INSTALLING GOLANG"
@@ -90,7 +90,7 @@ bootstrapingIPFS(){
     /usr/local/bin/ipfs bootstrap add /ip4/0.0.0.0/tcp/4001/ipfs/${IPFS_ID}
     LIBP2P_FORCE_PNET=1
     /bin/sed -i "s/127.0.0.1/0.0.0.0/g" $HOME/.ipfs/config
-    echo "export LIBP2P_FORCE_PNET=1" >> $HOME/.bashrc
+    echo "export LIBP2P_FORCE_PNET=1" >> /etc/profile
     echo -e "${GREEN}"
     echo -e "[*] FINISH BOOTSTRAPING IPFS NODES"
 }
@@ -139,7 +139,7 @@ installIPFSCluster(){
 	$GOPATH/bin/ipfs-cluster-ctl --version
     CLUSTER_SECRET=$(od -vN 32 -An -tx1 /dev/urandom | tr -d ' \n')
     echo "YOUR CLUSTER SECRET : ${CLUSTER_SECRET}"
-    echo "export CLUSTER_SECRET=${CLUSTER_SECRET}" >> $HOME/.bashrc
+    echo "export CLUSTER_SECRET=${CLUSTER_SECRET}" >> /etc/profile
     echo "CLUSTER_SECRET=${CLUSTER_SECRET}" > /var/www/html/cluster_secret.txt
     echo -e "${GREEN}"
     echo -e "[*] FINISH INSTALL IPFS CLUSTER"
@@ -154,10 +154,10 @@ installIPFSClusterPeer(){
 	$GOPATH/bin/ipfs-cluster-ctl --version
     CLUSTER_SECRET=$(curl ${IP}/cluster_secret.txt | awk -F '=' '{print $2}')
     echo "YOUR CLUSTER SECRET : ${CLUSTER_SECRET}"
-    echo "export CLUSTER_SECRET=${CLUSTER_SECRET}" >> $HOME/.bashrc
+    echo "export CLUSTER_SECRET=${CLUSTER_SECRET}" >> /etc/profile
     CLUSTER=$(curl ${IP}/cluster_ipfs.txt)
     echo "CONNECTING TO CLUSTER : $CLUSTER"
-    echo "export CLUSTER=$CLUSTER" >> $HOME/.bashrc
+    echo "export CLUSTER=$CLUSTER" >> /etc/profile
     echo -e "${GREEN}"
     echo -e "[*] FINISH INSTALL IPFS CLUSTER"
 }
@@ -167,7 +167,7 @@ startIPFSCluster(){
     $GOPATH/bin/ipfs-cluster-service init
     $GOPATH/bin/ipfs-cluster-service daemon &
     echo "$GOPATH/bin/ipfs-cluster-service daemon &
-sleep 10">> $HOME/.bashrc
+sleep 10">> /etc/profile
     echo -e "WAITING 10 SEC TO LET IPFS CLUSTER START"
     sleep 10
     CLUSTER_IPFS_ID=$($GOPATH/bin/ipfs-cluster-ctl id | awk '{print $2}' | grep 9096 | grep -v 127.0.0.1)
@@ -183,7 +183,7 @@ startIPFSClusterPeer(){
     $GOPATH/bin/ipfs-cluster-service init
     $GOPATH/bin/ipfs-cluster-service daemon --bootstrap $CLUSTER &
     echo "$GOPATH/bin/ipfs-cluster-service daemon --bootstrap $(curl ${IP}/cluster_ipfs.txt) & 
-sleep 10">> $HOME/.bashrc
+sleep 10">> /etc/profile
     echo -e "WAITING 10 SEC TO LET IPFS CLUSTER START"
     sleep 10
     # echo "
@@ -220,7 +220,7 @@ setupBlockchain(){
 sleep 5
 bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
 sleep 15
-npm start &">> $HOME/.bashrc
+npm start &">> /etc/profile
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
     sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
@@ -253,7 +253,7 @@ else
         echo -e "${YELLOW}"
         checkRoot
         IP=$(hostname -I | awk '{print $1}')
-        echo "export IP=$IP">> $HOME/.bashrc
+        echo "export IP=$IP">> /etc/profile
         echo "YOUR IP IS ${IP}"
         checkPing
         #IPFS

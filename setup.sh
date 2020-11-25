@@ -22,12 +22,12 @@ installGo(){
     tar -xvf go1.15.2.linux-amd64.tar.gz 
     mv go /usr/local
     mkdir $HOME/gopath
-    echo 'export GOROOT=/usr/local/go' >> $HOME/.bashrc
+    echo 'export GOROOT=/usr/local/go' >> /etc/profile
     GOROOT=/usr/local/go
-    echo 'export GOPATH=$HOME/gopath' >> $HOME/.bashrc
+    echo 'export GOPATH=$HOME/gopath' >> /etc/profile
     GOPATH=$HOME/gopath
     PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-    echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> $HOME/.bashrc
+    echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> /etc/profile
     /usr/local/go/bin/go version
     echo -e "${GREEN}"
     echo -e "[*] FINISH INSTALLING GOLANG"
@@ -53,10 +53,10 @@ installNodeJS(){
     mkdir -p /usr/local/lib/nodejs
     tar -xJvf node-v12.19.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
     PATH=$PATH:/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin
-    echo "export PATH=$PATH:/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin" >> $HOME/.bashrc
+    echo "export PATH=$PATH:/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin" >> /etc/profile
 }
 cd $HOME
 installDependencies
 installGo
-installNodeJS
+#installNodeJS
 /bin/bash
