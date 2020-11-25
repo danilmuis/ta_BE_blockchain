@@ -213,14 +213,14 @@ sleep 10">> $HOME/.bashrc
 installGeth(){
     echo -e ""
     echo -e "${YELLOW}"
-    echo -e "[*] INSTALLING IPFS VERSION 0.7.0"
+    echo -e "[*] INSTALLING GETH"
     cd $HOME
     git clone https://github.com/ethereum/go-ethereum
     cd go-ethereum
     make all
     cp build/bin/* /usr/local/bin/.
     echo -e "${GREEN}"
-    echo -e "[*] FINISH INSTALL IPFS CLUSTER"
+    echo -e "[*] FINISH INSTALL GETH"
 }
 setupBlockchain(){
     cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
