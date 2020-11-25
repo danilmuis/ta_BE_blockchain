@@ -217,13 +217,13 @@ setupBlockchain(){
     echo -e "${YELLOW}"
     echo -e "[*] SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
     echo -e "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
-    sleep 5
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
-    sleep 15
-    npm start &">> $HOME/.bashrc
+sleep 5
+bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+sleep 15
+npm start &">> $HOME/.bashrc
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
-    npm install
+    sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
     npm run create
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
 }
