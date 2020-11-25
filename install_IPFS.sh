@@ -228,12 +228,13 @@ setupBlockchain(){
     echo -e "[*] SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
     
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/init.sh > /home/mdm.txt
-    sleep 5
+    sleep 30
     cat /home/mdm.txt | grep enode > /var/www/html/bootnode.txt
-    BOOTNODE=$(curl ${IP}/bootnode.txt)
+    BOOTNODE=$(cat /var/www/html/bootnode.txt)
     echo "INI : BOOTNODE=${BOOTNODE}"
-    echo "export BOOTNODE=${BOOTNODE}" >> /etc/profile
+    echo "export BOOTNODE=${cat /var/www/html/bootnode.txt}" >> /etc/profile
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
+    sleep 15
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
     sleep 15
     sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
