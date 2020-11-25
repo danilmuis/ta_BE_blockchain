@@ -227,7 +227,7 @@ setupBlockchain(){
     sleep 5
     BOOTNODE=$(curl ${IP}/bootnode.txt)
     echo "export BOOTNODE=$BOOTNODE" >> /etc/profile
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh 
     sleep 15
     sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
     /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm run create

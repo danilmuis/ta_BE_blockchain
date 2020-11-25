@@ -49,6 +49,9 @@ installDependencies(){
 
 installNodeJS(){
     cd /tmp
+    echo -e ""
+    echo -e "${YELLOW}"
+    echo -e "[*] INSTALLING NODEJS VERSION 12.19.0"
     wget https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz
     mkdir -p /usr/local/lib/nodejs
     tar -xJvf node-v12.19.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
