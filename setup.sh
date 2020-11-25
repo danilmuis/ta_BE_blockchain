@@ -64,4 +64,5 @@ installGo
 installNodeJS
 source /etc/profile
 echo "source /etc/profile" >> $HOME/.bashrc
+cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
 /bin/bash

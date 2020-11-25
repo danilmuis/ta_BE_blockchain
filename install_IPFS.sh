@@ -211,22 +211,28 @@ sleep 10">> $HOME/.bashrc
     echo -e "[*] FINISH IPFS CLUSTER"
 }
 installGeth(){
+    echo -e ""
+    echo -e "${YELLOW}"
+    echo -e "[*] INSTALLING IPFS VERSION 0.7.0"
     cd $HOME
     git clone https://github.com/ethereum/go-ethereum
     cd go-ethereum
     make all
     cp build/bin/* /usr/local/bin/.
+    echo -e "${GREEN}"
+    echo -e "[*] FINISH INSTALL IPFS CLUSTER"
 }
 setupBlockchain(){
     cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
     echo -e "${YELLOW}"
     echo -e "[*] SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
     
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh > /tmp/mdm.txt
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh > /home/mdm.txt
     sleep 5
-    cat /tmp/mdm.txt | grep enode > /var/www/html/bootnode.txt
+    cat /home/mdm.txt | grep enode > /var/www/html/bootnode.txt
     BOOTNODE=$(curl ${IP}/bootnode.txt)
-    echo "export BOOTNODE=$BOOTNODE" >> /etc/profile
+    echo "INI : BOOTNODE=${BOOTNODE}"
+    echo "export BOOTNODE=${BOOTNODE}" >> /etc/profile
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh 
     sleep 15
     sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
