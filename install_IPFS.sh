@@ -47,6 +47,7 @@ installIPFS(){
     echo -e ""
     echo -e "${YELLOW}"
     echo -e "[*] INSTALLING IPFS VERSION 0.7.0"
+    cd /tmp
     wget https://dist.ipfs.io/go-ipfs/v0.7.0/go-ipfs_v0.7.0_linux-amd64.tar.gz
     tar -xvf go-ipfs_v0.7.0_linux-amd64.tar.gz
     mv go-ipfs/ipfs /usr/local/bin/ipfs
@@ -132,6 +133,7 @@ IPFSForever(){
 installIPFSCluster(){
     echo -e "${YELLOW}"
     echo -e "[*] INSTALL IPFS CLUSTER"
+    cd /tmp
     git clone https://github.com/ipfs/ipfs-cluster.git $GOPATH/src/github.com/ipfs/ipfs-cluster
     cd $GOPATH/src/github.com/ipfs/ipfs-cluster
 	make install
@@ -141,12 +143,14 @@ installIPFSCluster(){
     echo "YOUR CLUSTER SECRET : ${CLUSTER_SECRET}"
     echo "export CLUSTER_SECRET=${CLUSTER_SECRET}" >> /etc/profile
     echo "CLUSTER_SECRET=${CLUSTER_SECRET}" > /var/www/html/cluster_secret.txt
+    
     echo -e "${GREEN}"
     echo -e "[*] FINISH INSTALL IPFS CLUSTER"
 }
 installIPFSClusterPeer(){
     echo -e "${YELLOW}"
     echo -e "[*] INSTALL IPFS CLUSTER"
+    cd /tmp
     git clone https://github.com/ipfs/ipfs-cluster.git $GOPATH/src/github.com/ipfs/ipfs-cluster
     cd $GOPATH/src/github.com/ipfs/ipfs-cluster
 	make install
@@ -167,7 +171,7 @@ startIPFSCluster(){
     $GOPATH/bin/ipfs-cluster-service init
     $GOPATH/bin/ipfs-cluster-service daemon &
     echo "$GOPATH/bin/ipfs-cluster-service daemon &
-sleep 10">> /etc/profile
+sleep 10">> $HOME/.bashrc
     echo -e "WAITING 10 SEC TO LET IPFS CLUSTER START"
     sleep 10
     CLUSTER_IPFS_ID=$($GOPATH/bin/ipfs-cluster-ctl id | awk '{print $2}' | grep 9096 | grep -v 127.0.0.1)
@@ -183,7 +187,7 @@ startIPFSClusterPeer(){
     $GOPATH/bin/ipfs-cluster-service init
     $GOPATH/bin/ipfs-cluster-service daemon --bootstrap $CLUSTER &
     echo "$GOPATH/bin/ipfs-cluster-service daemon --bootstrap $(curl ${IP}/cluster_ipfs.txt) & 
-sleep 10">> /etc/profile
+sleep 10">> $HOME/.bashrc
     echo -e "WAITING 10 SEC TO LET IPFS CLUSTER START"
     sleep 10
     # echo "
@@ -220,7 +224,7 @@ setupBlockchain(){
 sleep 5
 bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
 sleep 15
-npm start &">> /etc/profile
+npm start &">> $HOME/.bashrc
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
     sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
@@ -253,7 +257,7 @@ else
         echo -e "${YELLOW}"
         checkRoot
         IP=$(hostname -I | awk '{print $1}')
-        echo "export IP=$IP">> /etc/profile
+        echo "export IP=$IP">> $HOME/.bashrc
         echo "YOUR IP IS ${IP}"
         checkPing
         #IPFS
