@@ -227,21 +227,23 @@ setupBlockchain(){
     echo -e "${YELLOW}"
     echo -e "[*] SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
     
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh > /home/mdm.txt
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/init.sh > /home/mdm.txt
     sleep 5
     cat /home/mdm.txt | grep enode > /var/www/html/bootnode.txt
     BOOTNODE=$(curl ${IP}/bootnode.txt)
     echo "INI : BOOTNODE=${BOOTNODE}"
     echo "export BOOTNODE=${BOOTNODE}" >> /etc/profile
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh 
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
     sleep 15
     sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
     /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm run create
-    echo -e "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh 
+    echo -e "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
 sleep 5
-bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh 
+bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
 sleep 15
-/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm start ">> $HOME/.bashrc
+cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/
+/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm start & ">> $HOME/.bashrc
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
 }
 checkRoot(){
