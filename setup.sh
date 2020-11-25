@@ -26,6 +26,7 @@ installGo(){
     GOROOT=/usr/local/go
     echo 'export GOPATH=$HOME/gopath' >> $HOME/.bashrc
     GOPATH=$HOME/gopath
+    PATH=$PATH:$GOROOT/bin:$GOPATH/bin
     echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> $HOME/.bashrc
     /usr/local/go/bin/go version
     echo -e "${GREEN}"
@@ -51,8 +52,8 @@ installNodeJS(){
     wget https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz
     mkdir -p /usr/local/lib/nodejs
     tar -xJvf node-v12.19.0-linux-x64.tar.xz -C /usr/local/lib/nodejs
-    echo "export PATH=/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin:$PATH"
-    echo "export PATH=/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin:$PATH" >> $HOME/.bashrc
+    PATH=$PATH:/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin
+    echo "export PATH=$PATH:/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin" >> $HOME/.bashrc
 }
 cd $HOME
 installDependencies

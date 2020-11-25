@@ -493,3 +493,16 @@
 20:32:04.836925 table@remove removed @109
 21:43:39.744370 db@close closing
 21:43:39.775287 db@close done T·30.2162ms
+=============== Nov 23, 2020 (+07) ===============
+20:18:08.150049 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+20:18:08.193448 version@stat F·[0 1] S·426B[0B 426B] Sc·[0.00 0.00]
+20:18:08.193448 db@open opening
+20:18:08.193448 journal@recovery F·1
+20:18:08.196441 journal@recovery recovering @114
+20:18:08.258938 memdb@flush created L0@117 N·2064 S·18KiB "loc..seq,v50256":"n:\xba..ong,v50262"
+20:18:08.261951 version@stat F·[1 1] S·19KiB[18KiB 426B] Sc·[0.25 0.00]
+20:18:08.334745 db@janitor F·5 G·1
+20:18:08.334745 db@janitor removing table-113
+20:18:08.345874 db@open done T·152.4268ms
+21:00:33.066563 db@close closing
+21:00:33.068927 db@close done T·997.2µs
