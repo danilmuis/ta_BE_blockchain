@@ -143,6 +143,7 @@ installIPFSCluster(){
     echo "YOUR CLUSTER SECRET : ${CLUSTER_SECRET}"
     echo "export CLUSTER_SECRET=${CLUSTER_SECRET}" >> /etc/profile
     echo "CLUSTER_SECRET=${CLUSTER_SECRET}" > /var/www/html/cluster_secret.txt
+    echo "${CLUSTER_SECRET}" > /var/www/html/cluster_ipfs.txt
     
     echo -e "${GREEN}"
     echo -e "[*] FINISH INSTALL IPFS CLUSTER"
@@ -220,15 +221,21 @@ setupBlockchain(){
     cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
     echo -e "${YELLOW}"
     echo -e "[*] SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
+    
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh > /tmp/mdm.txt
+    cat /tmp/mdm.txt | grep enode > /var/www/html/bootnode.txt
+    sleep 5
+    BOOTNODE=$(curl ${IP}/bootnode.txt)
+    echo "export BOOTNODE=$BOOTNODE" >> /etc/profile
+    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+    sleep 15
+    sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
+    /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm run create
     echo -e "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
 sleep 5
 bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
 sleep 15
-npm start &">> $HOME/.bashrc
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
-    sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
-    npm run create
+/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm start &">> $HOME/.bashrc
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
 }
 checkRoot(){
@@ -244,6 +251,7 @@ if [ "$#" = 0 ]
 then
     usage
 else
+    source /etc/profile
     if ! command -v /usr/local/go/bin/go   &> /dev/null
     then
         echo "Dependencies not found please run setup.sh"

@@ -60,4 +60,5 @@ installDependencies
 installGo
 installNodeJS
 source /etc/profile
+echo "source /etc/profile" >> $HOME/.bashrc
 /bin/bash
