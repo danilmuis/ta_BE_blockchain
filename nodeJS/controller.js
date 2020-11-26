@@ -4,6 +4,7 @@ var blockchain = require('./methodBlockchain');
 const fs = require('fs');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
+const execSync = require('child_process').execSync;
 exports.dashboard = function(req,res){
     res.render('index');
 }
@@ -31,13 +32,18 @@ exports.generateSertifikat = async function(req,res){
         pasFoto : "data:image/png;base64,"+pasfoto,
         latar : "data:image/png;base64,"+latar,
     });
+    const nama_file = "./ijazah/"+new Date().getTime()+".pdf";
     const puppeteer = require('puppeteer');
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setContent(html);
     //await page.pdf({ path: 'final.pdf', format: 'A4' });
-    await page.pdf({ path: 'final.pdf', width: '600px', height: '403px' });
+    await page.pdf({ path: nama_file, width: '600px', height: '403px' });
     await browser.close();
+    //PANGGIL IPFS-CTL ADD
+    var hash = execSync(`ipfs-cluster-ctl add ${nama_file} | awk '{print $2}'`);
+    console.log("HASH: "+hash);
+    //LALU SEND HASILNYA KE BLOCKCHAIN
     console.log("DONE PDF ");
 
   res.send(html);

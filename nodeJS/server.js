@@ -15,13 +15,14 @@ var blockchain = require('./methodBlockchain');
 
 
 app.use(morgan('common'));
-app.use(helmet());
+//app.use(helmet());
 app.use('/public',express.static('static'));
 app.set('view engine', 'ejs')
 app.use(fileUpload())
-app.use(cors({
-    origin: `http://127.0.0.1:${port}`
-}));
+// app.use(cors({
+//     origin: `http://0.0.0.0:${port}`
+// }));
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -30,6 +31,10 @@ var controller = require('./controller');
 var routes = require('./routes');
 // routes(app);
 app.use('/',routes);
+// app.use(function (req, res, next) {
+//     res.set("Content-Security-Policy", "default-src 'self'");
+//     next();
+//   });
 //Error handler
 app.use((req,res,next) =>{
     const error = new Error(`NOT FOUND BRUH - ${req.originalUrl}`);
@@ -58,6 +63,6 @@ async function run(){
     //console.log(await contract.methods.loadHash().call());
     //var x = contract.methods.loadHash().call();
     //console.log(contract);
-    app.listen(port,'127.0.0.1');
+    app.listen(port,'0.0.0.0');
     console.log(`server start on http://localhost:${port} `);
 };

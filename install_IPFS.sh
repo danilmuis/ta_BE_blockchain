@@ -232,16 +232,18 @@ setupBlockchain(){
     cat /home/mdm.txt | grep enode > /var/www/html/bootnode.txt
     BOOTNODE=$(cat /var/www/html/bootnode.txt)
     echo "INI : BOOTNODE=${BOOTNODE}"
-    echo "export BOOTNODE=${cat /var/www/html/bootnode.txt}" >> /etc/profile
+    echo "export BOOTNODE=$(cat /var/www/html/bootnode.txt)" >> /etc/profile
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     sleep 15
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+    npm config set user 0
+    npm config set unsafe-perm true
     sleep 15
-    sudo /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm install
-    /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm run create
-    echo -e "bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
+    npm install
+    npm run create
+    echo -e "nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
 sleep 5
-bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
 sleep 15
 cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/
 /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm start & ">> $HOME/.bashrc
@@ -274,7 +276,8 @@ else
         echo -e "${YELLOW}"
         checkRoot
         IP=$(hostname -I | awk '{print $1}')
-        echo "export IP=$IP">> $HOME/.bashrc
+        echo "export IP=$IP">> /etc/profile
+        source /etc/profile
         echo "YOUR IP IS ${IP}"
         checkPing
         #IPFS
