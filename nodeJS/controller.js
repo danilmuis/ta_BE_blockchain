@@ -41,7 +41,7 @@ exports.generateSertifikat = async function(req,res){
     await page.pdf({ path: nama_file, width: '600px', height: '403px' });
     await browser.close();
     //PANGGIL IPFS-CTL ADD
-    var hash = execSync(`ipfs-cluster-ctl add ${nama_file} | awk '{print $2}'`);
+    //var hash = execSync(`ipfs-cluster-ctl add ${nama_file} | awk '{print $2}'`);
     console.log("HASH: "+hash);
     //LALU SEND HASILNYA KE BLOCKCHAIN
     console.log("DONE PDF ");
