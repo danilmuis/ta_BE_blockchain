@@ -94,6 +94,8 @@
 </head>
 
 <body class="d-flex flex-column">
+    <form action="/stakeholder" method="post" enctype="multipart/form-data" id="checkForm">
+
     <div id="page-content">
         <div class="container">
             <div class="row">
@@ -136,7 +138,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type='button' id="findHashButton" onclick="find()" class="btn btn-primary vr"
+                        <button type='button' id="findHashButton" class="btn btn-primary vr" onclick="$('#checkForm').submit();"
                             style="background-color:darkorange;">
                             <B style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Verifikasi <i
                                     class="fa fa-check-square"></i></B>
@@ -147,6 +149,7 @@
                             <p style="color: white;">Loading..</p>
                         </div>
                     </div>
+                    
                     <div id="txt">
 
                         <div id="responseText" style="color:white"></div>
@@ -167,6 +170,7 @@
             <h7 style="color:#faf9e8;">Telkom University</h7>
         </div>
     </footer>
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
@@ -239,7 +243,20 @@
             $("button").click(function () {
                 $("#txt").load("/public/js/app.js/#responseText");
             });
+            
+            let message = '<%-message%>';
+            if(typeof(message) !== 'undefined'){
+                if (message != 0) {
+                    $("#responseText").html(
+                    "<p>&#10004; Valid</p>" +
+                    "<p>File Hash Value: " + message + "</p>"
+                    );
+                } else {
+                    $("#responseText").html("<p>&#x2612; Tidak Valid</p>");
+                };
+            }
         });
+
     </script>
 
 

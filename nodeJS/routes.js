@@ -1,6 +1,7 @@
 'use strict'
 var router =require('express').Router();
-var controller = require('./controller')
+var controller = require('./controller');
+
 router.get('/',controller.index);
 router.post('/send',controller.send);
 router.get('/contract',controller.contract);
@@ -13,6 +14,9 @@ router.get('/approval',controller.approval);
 router.get('/transkrip',controller.transkrip);
 router.post('/sertifikat',controller.generateSertifikat);
 router.post('/buatHTML',controller.buatHTML);
+router.get('/stakeholder', controller.pageChecker);
+//router.post('/check',upload.any(),controller.check);
+router.post('/stakeholder',controller.check);
 //router.get('/mdm',controller.user);
 module.exports = router;
 // module.exports = function(app){

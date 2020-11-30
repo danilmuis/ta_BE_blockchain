@@ -1,0 +1,20 @@
+https://github.com/ethereum/go-ethereum
+
+https://www.youtube.com/watch?v=A5V2jdLi5mI
+
+https://github.com/CovenantSQL/CovenantSQL
+
+https://www.bigchaindb.com/
+
+https://www.rinkeby.io/
+
+https://www.ipfs.io
+https://github.com/ipfs/go-ipfs
+
+
+IPFS
+Penyimpanan file ijazah berbasis blockchain dan IPFS sivil chain
+
+Implementasi Sistem Pendeteksi Ijazah dan Transkrip Palsu dengan Menggunakan IPFS dan Smart Contract Blockchain.
+
+arsitektur 2 NODE , 1 IPFS 1 BLOCKCHAIN SEWA IPFS

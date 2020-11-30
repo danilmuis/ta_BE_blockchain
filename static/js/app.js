@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  notary_init();
+  //notary_init();
   // request_permission();
 });
 
@@ -51,25 +51,5 @@ function send() {
 };
 
 function find() {
-  hashForFile(function (err, hash) {
-    notary_find(hash, function (err, resultObj) {
-      if (err) {
-        console.error(err);
-        return
-      }
-      if (resultObj.blockNumber != 0) {
-        $("#responseText").html(
-          "<p>&#10004; Valid</p>" +
-          "<p>File Hash Value: " + hash + "</p>" +
-          "<p>Block No.: " + resultObj.blockNumber + "</p>" +
-          "<p>Timestamp: " + resultObj.mineTime + "</p>" +
-          "<p>Signature Hash Algorithm: sha256</p>"
-        );
-      } else {
-        $("#responseText").html("<p>&#x2612; Tidak Valid</p>" +
-          "<p>File Hash Value: " + hash + "</p>"
-        );
-      }
-    });
-  });
+  alert(1);
 };

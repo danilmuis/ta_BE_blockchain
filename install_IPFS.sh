@@ -276,7 +276,7 @@ else
         echo -e "${YELLOW}"
         checkRoot
         IP=$(hostname -I | awk '{print $1}')
-        echo "export IP=$IP">> /etc/profile
+        echo "export IP=$(hostname -I | awk '{print $1}')">> /etc/profile
         source /etc/profile
         echo "YOUR IP IS ${IP}"
         checkPing

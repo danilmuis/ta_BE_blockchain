@@ -2,9 +2,9 @@ node1 0x7c1008aBe82823D46eF5ba527C7a2d7746E81388 1
 node2 0xE0489a2C85b2eDDCFB97aB02669E9ca7A79C9abb 1
 bnode enode://f4229eb54552c20649a4fee28a5d39cd48bf171df8e4b08818ff30287f2ecf9b3d6d6313a5b0b58b877bb90e14f30ff24ce3f8bda836fcf2eeed51570d752498@192.168.18.52:0?discport=30301
 
-geth --networkid 9999 --datadir "./data" --bootnodes enode://f4229eb54552c20649a4fee28a5d39cd48bf171df8e4b08818ff30287f2ecf9b3d6d6313a5b0b58b877bb90e14f30ff24ce3f8bda836fcf2eeed51570d752498@192.168.18.52:0?discport=30301 --port 30303 --ipcdisable --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8545 --unlock 0x2CB0817440b9817A92aC33B918F0A39597B97023 --password password.txt --mine console
+geth --networkid 9999 --datadir "./data" --bootnodes enode://f4229eb54552c20649a4fee28a5d39cd48bf171df8e4b08818ff30287f2ecf9b3d6d6313a5b0b58b877bb90e14f30ff24ce3f8bda836fcf2eeed51570d752498@192.168.18.52:0?discport=30301 --port 30303 --ipcdisable --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8545 --unlock 0x2CB0817440b9817A92aC33B918F0A39597B97023 --password password.txt --mine 
 
-geth --networkid 9999 --datadir "./data" --bootnodes enode://f4229eb54552c20649a4fee28a5d39cd48bf171df8e4b08818ff30287f2ecf9b3d6d6313a5b0b58b877bb90e14f30ff24ce3f8bda836fcf2eeed51570d752498@192.168.18.52:0?discport=30301 --port 30304 --ipcdisable --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8546 --unlock 0x4d080b2122b3ada03a309C89244b545Eb7A7f7cb --password password.txt console
+geth --networkid 9999 --datadir "./data" --bootnodes enode://f4229eb54552c20649a4fee28a5d39cd48bf171df8e4b08818ff30287f2ecf9b3d6d6313a5b0b58b877bb90e14f30ff24ce3f8bda836fcf2eeed51570d752498@192.168.18.52:0?discport=30301 --port 30304 --ipcdisable --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8546 --unlock 0x4d080b2122b3ada03a309C89244b545Eb7A7f7cb --password password.txt 
 
 bootnode -nodekey "./boot.key" -verbosity 7 -addr "192.168.18.52:30301"
 

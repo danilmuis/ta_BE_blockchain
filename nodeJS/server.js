@@ -4,7 +4,10 @@ const path = require('path');
 const fileUpload = require('express-fileupload');
 const morgan = require('morgan');
 const helmet = require('helmet');
+
 var app = express();
+// const multer = require('multer');
+// const upload = multer();
 var port = process.env.PORT || 9000;
 var cors = require('cors');
 var bodyParser = require('body-parser');
@@ -23,13 +26,14 @@ app.use(fileUpload())
 //     origin: `http://0.0.0.0:${port}`
 // }));
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 var controller = require('./controller');
 
 var routes = require('./routes');
-// routes(app);
+
+
 app.use('/',routes);
 // app.use(function (req, res, next) {
 //     res.set("Content-Security-Policy", "default-src 'self'");

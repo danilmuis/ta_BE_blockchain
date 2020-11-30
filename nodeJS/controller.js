@@ -4,6 +4,7 @@ var blockchain = require('./methodBlockchain');
 const fs = require('fs');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
+
 const execSync = require('child_process').execSync;
 exports.dashboard = function(req,res){
     res.render('index');
@@ -34,19 +35,38 @@ exports.generateSertifikat = async function(req,res){
     });
     const nama_file = "./ijazah/"+new Date().getTime()+".pdf";
     const puppeteer = require('puppeteer');
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox']
+     });
     const page = await browser.newPage();
     await page.setContent(html);
     //await page.pdf({ path: 'final.pdf', format: 'A4' });
     await page.pdf({ path: nama_file, width: '600px', height: '403px' });
     await browser.close();
     //PANGGIL IPFS-CTL ADD
-    //var hash = execSync(`ipfs-cluster-ctl add ${nama_file} | awk '{print $2}'`);
-    console.log("HASH: "+hash);
+    var hash = execSync(`ipfs-cluster-ctl add ${nama_file} | awk '{print $2}'`)+'';
+    //var file_path = path.join(__dirname+'/../',nama_file);
+    //console.log(file_path);
+    hash = hash.substr(0, hash.length-1)
+    console.log("HASH: "+(hash));
     //LALU SEND HASILNYA KE BLOCKCHAIN
-    console.log("DONE PDF ");
+    await blockchain.setIjazah(konek,hash);
+    //LALU SEND FILE KE CLIENT
+    res.status(200);
+    //res.contentType("application/pdf");
+    res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
+    res.download(nama_file,(err)=>{
+        if(err){
+            res.send('ERROR');
+        }
+        
+    });   
+    //res.send(data_file);
+    execSync(`rm ${nama_file}`);
+    //res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
 
-  res.send(html);
+    console.log("DONE PDF ");
     
 }
 exports.buatHTML = async function(req,res){
@@ -67,8 +87,32 @@ exports.users = function(req,res){
     res.send(web3);
 }
 
-
-
+exports.pageChecker = function(req, res) {
+    res.render('blockchainserver',{'message':''});
+}
+exports.check = async function(req,res){
+    var file = (req.files.img_logo);
+    var path = './ijazah/'+file.name;
+    file.mv(path);
+    var output = execSync(`ipfs add ${path}`);
+    execSync(`rm ${path}`);
+    
+    var ijazah = ijazahToJSON(await blockchain.getIjazah(konek));
+    var output = 'ijazah1';
+    console.log(ijazah);
+    var result = getIjazahByHash(ijazah,output);
+    console.log(result);
+    if(result.length >0){
+        res.render('blockchainserver',{
+            'message' : result[0].data 
+        });
+    }else{
+        res.render('blockchainserver',{
+            'message' : '0'
+        });
+        //res.json({'message':'NOT FOUND'})
+    }
+}
 exports.index = async function(req,res){
     var x = await blockchain.loadHash(konek);   
     res.json(x);
@@ -183,3 +227,9 @@ function ijazahToJSON(ijazah){
     }
     return data;
 }
+function getIjazahByHash(ijazah,hash){
+    return ijazah.filter(
+        function(data){ return data.data == hash }
+    );
+}
+
