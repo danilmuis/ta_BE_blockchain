@@ -6,6 +6,8 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
+const puppeteer = require('puppeteer');
+
 
 const execSync = require('child_process').execSync;
 exports.dashboard = function(req,res){
@@ -30,7 +32,67 @@ exports.generateTranskrip = async function(req,res){
         logoUniv : "data:image/png;base64,"+logo,
         pasFoto : "data:image/png;base64,"+pasfoto,
     });
-    res.send(html);
+    const nama_file = "./transkrip/"+new Date().getTime()+".pdf";
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox']
+     });
+    const page = await browser.newPage();
+    await page.setContent(html);
+    //await page.pdf({ path: 'final.pdf', format: 'A4' });
+    await page.pdf({ path: nama_file, width: '1000px', height: '1003px' });
+    await browser.close();
+    //PANGGIL IPFS-CTL ADD
+    var hash = execSync(`ipfs-cluster-ctl add ${nama_file} | awk '{print $2}'`)+'';
+    var file_path = path.join(__dirname+'/../',nama_file);
+    //console.log(file_path);
+    hash = hash.substr(0, hash.length-1)
+    console.log("HASH: "+(hash));
+    //LALU SEND HASILNYA KE BLOCKCHAIN
+    await blockchain.setIjazah(konek,hash);
+    //LALU SEND FILE KE CLIENT
+    // res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
+    // res.download(nama_file,(err)=>{
+    //     if(err){
+    //         res.send('ERROR');
+    //     }
+        
+    // });   
+    //SEND EMAIL
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'sivilchain@gmail.com',
+            pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
+        }
+    });
+    const mailOptions = {
+        from: 'sivilchain@gmail.com',
+        to: req.body.email,
+        subject: 'File Transkrip',
+        text: req.body.message,
+        attachments: [{
+            path: file_path,
+            contentType: 'application/pdf'
+        }]
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+            //res.render('transkrip')
+            var data = fs.readFileSync(file_path);
+            execSync(`rm ${nama_file}`);
+            res.status(200);
+            res.contentType("application/pdf");
+            res.send(html);
+
+            //res.send(data);
+
+
+        }
+    });
 }
 exports.generateSertifikat = async function(req,res){
     var template = fs.readFileSync('./reportSertifikat.html','utf8');
@@ -47,7 +109,6 @@ exports.generateSertifikat = async function(req,res){
         latar : "data:image/png;base64,"+latar,
     });
     const nama_file = "./ijazah/"+new Date().getTime()+".pdf";
-    const puppeteer = require('puppeteer');
     const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox']

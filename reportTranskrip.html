@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <<style>
+    <style>
         @import url("https://fonts.googleapis.com/css?family=Quicksand:300,400,500,600,700&display=swap");
         body {
         margin: 0;
@@ -387,17 +387,18 @@
         // new QRCode(dekan, "<%= data.dekan %> (<%= data.nipDekan %>)")
         new QRCode(rektor,
             "Data Rektor asal <%= data.lembaga %> \nNama Rektor: <%= data.rektor %>\nNIP Rektor: <%= data.nipRektor %>"
-        )
+        );
         new QRCode(dekan,
-            "Data Dekan asal <%= data.lembaga %> \nNama Dekan: <%= data.dekan %>\nNIP Dekan: <%= data.nipDekan %>")
+            "Data Dekan asal <%= data.lembaga %> \nNama Dekan: <%= data.dekan %>\nNIP Dekan: <%= data.nipDekan %>");
 
-        window.addEventListener('load', () => {
-            window.print();
-        })
 
-        window.addEventListener('afterprint', () => {
-            window.location.href = "/cekTranskrip";
-        })
+        //window.addEventListener('load', () => {
+        //    window.print();
+        //})
+
+        //window.addEventListener('afterprint', () => {
+        //    window.location.href = "/cekTranskrip";
+        //})
     </script>
 </body>
 
