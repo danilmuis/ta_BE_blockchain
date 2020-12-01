@@ -79,16 +79,18 @@ exports.generateTranskrip = async function(req,res){
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
+            res.json({'message':'EMAIL Error'});
         } else {
             console.log('Email sent: ' + info.response);
             //res.render('transkrip')
             var data = fs.readFileSync(file_path);
-            execSync(`rm ${nama_file}`);
             res.status(200);
             res.contentType("application/pdf");
-            res.send(html);
+            //res.send(html);
 
-            //res.send(data);
+            res.send(data);
+            execSync(`rm ${nama_file}`);
+
 
 
         }
@@ -155,15 +157,17 @@ exports.generateSertifikat = async function(req,res){
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
+            res.json({'message':'EMAIL Error'});
         } else {
             console.log('Email sent: ' + info.response);
             //res.render('transkrip')
             var data = fs.readFileSync(file_path);
-            execSync(`rm ${nama_file}`);
             res.status(200);
             res.contentType("application/pdf");
 
             res.send(data);
+            execSync(`rm ${nama_file}`);
+
 
 
         }

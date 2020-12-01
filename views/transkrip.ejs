@@ -112,44 +112,49 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="fakultas">Fakultas</label>
-                                                        <input name='fakultas' type="text" class="form-control"
+                                                        <input name='fakultas' type="text" class="form-control" required
                                                             id="fakultas">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="prodi">Program Studi</label>
-                                                        <input name='prodi' type="text" class="form-control" id="prodi">
+                                                        <input name='prodi' type="text" class="form-control" id="prodi" required> 
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="tglLulus">Tanggal Lulus</label>
-                                                        <input name='tglLulus' type="date" class="form-control"
+                                                        <input name='tglLulus' type="date" class="form-control" required
                                                             id="tglLulus">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="ta">Judul Tugas Akhir</label>
-                                                        <input name='ta' type="text" class="form-control" id="ta">
+                                                        <input name='ta' type="text" class="form-control" id="ta" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="rektor">Rektor</label>
-                                                        <input name='rektor' type="text" class="form-control"
+                                                        <input name='rektor' type="text" class="form-control" required
                                                             id="rektor">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="rektor">NIP Rektor</label>
-                                                        <input name='nipRektor' type="text" class="form-control"
+                                                        <input name='nipRektor' type="text" class="form-control" required
                                                             id="nipRektor">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="dekan">Dekan</label>
-                                                        <input name='dekan' type="text" class="form-control" id="dekan">
+                                                        <input name='dekan' type="text" class="form-control" id="dekan" required> 
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="dekan">NIP Dekan</label>
-                                                        <input name='nipDekan' type="text" class="form-control"
+                                                        <input name='nipDekan' type="text" class="form-control" required
                                                             id="nipDekan">
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="email">Email</label>
+                                                        <input name='email' type="email" class="form-control" placeholder = "Dibutuhkan untuk mengirim ijazah ke email" required
+                                                            id="email">
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="dekan">IPK</label>
-                                                        <input name='ipk' type="text" class="form-control" id="ipk">
+                                                        <input name='ipk' type="text" class="form-control" id="ipk" required>
                                                     </div>
                                                 </div>
                                                 <div class="btn btn-success" id="add">Add Mata Kuliah</div>
@@ -178,23 +183,23 @@
                 let isi = `<div class="form-group row"">\
                                 <div class="col-md-2">\
                                     <label for="kode_matkul">Kode Makul</label>\
-                                    <input class="form-control" type="text" name="kode_matkul" id="kode_matkul">\
+                                    <input class="form-control" type="text" name="kode_matkul" required id="kode_matkul">\
                                 </div>\
                                 <div class="col-md-2">\
                                     <label for="matkul">Mata Kuliah</label>\
-                                    <input class="form-control" type="text" name="matkul" id="matkul">\
+                                    <input class="form-control" type="text" required name="matkul" id="matkul">\
                                 </div>\
                                 <div class="col-md-2">\
                                     <label for="semester">Semester</label>\
-                                    <input class="form-control" type="text" name="semester" id="semester">\
+                                    <input class="form-control" type="text" required name="semester" id="semester">\
                                 </div>\
                                 <div class="col-md-2">\
                                     <label for="sks">SKS</label>\
-                                    <input class="form-control" type="text" name="sks" id="sks">\
+                                    <input class="form-control" type="text" required name="sks" id="sks">\
                                 </div>\
                                 <div class="col-md-2">\
                                     <label for="nilai">Nilai</label>\
-                                    <input class="form-control" type="text" name="nilai" id="nilai">\
+                                    <input class="form-control" type="text" required name="nilai" id="nilai">\
                                 </div>\
                                 <div class="col-md-2 d-flex justify-content-center align-items-center">\
                                     <div class="btn btn-danger btn-remove" onclick="$(this).parents('.form-group.row').remove()">X</div>\
