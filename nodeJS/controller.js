@@ -2,6 +2,7 @@
 var konek = require('./konek_blockchain');
 var blockchain = require('./methodBlockchain');
 const fs = require('fs');
+const path = require('path');
 const nodemailer = require('nodemailer');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
@@ -19,7 +20,18 @@ exports.transkrip = function(req,res){
 exports.approval = function(req,res){
     res.render('approval');
 }
-
+exports.generateTranskrip = async function(req,res){
+    var template = fs.readFileSync('./reportTranskrip.html','utf8');
+    var compiled = ejs.compile(template);
+    var logo = (req.files.logo.data.toString('base64'));
+    var pasfoto = (req.files.pas.data.toString('base64'));
+    var html = compiled({
+        data : req.body,
+        logoUniv : "data:image/png;base64,"+logo,
+        pasFoto : "data:image/png;base64,"+pasfoto,
+    });
+    res.send(html);
+}
 exports.generateSertifikat = async function(req,res){
     var template = fs.readFileSync('./reportSertifikat.html','utf8');
     var latar = fs.readFileSync('./latar sertifikat.png').toString('base64');
@@ -54,7 +66,6 @@ exports.generateSertifikat = async function(req,res){
     //LALU SEND HASILNYA KE BLOCKCHAIN
     await blockchain.setIjazah(konek,hash);
     //LALU SEND FILE KE CLIENT
-    //res.contentType("application/pdf");
     // res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
     // res.download(nama_file,(err)=>{
     //     if(err){
@@ -86,10 +97,12 @@ exports.generateSertifikat = async function(req,res){
         } else {
             console.log('Email sent: ' + info.response);
             //res.render('transkrip')
+            var data = fs.readFileSync(file_path);
             execSync(`rm ${nama_file}`);
             res.status(200);
+            res.contentType("application/pdf");
 
-            res.send('DONEEE');
+            res.send(data);
 
 
         }
@@ -125,7 +138,7 @@ exports.check = async function(req,res){
     var file = (req.files.img_logo);
     var path = './ijazah/'+file.name;
     await file.mv(path);
-    var output = execSync(`ipfs add ${path} | awk '{print $2}`);
+    var output = execSync(`ipfs add ${path} | awk '{print $2}'`)+'';
     output = output.substr(0, output.length-1)
     execSync(`rm ${path}`);
     

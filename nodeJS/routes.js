@@ -13,6 +13,7 @@ router.get('/admin',controller.admin);
 router.get('/approval',controller.approval);
 router.get('/transkrip',controller.transkrip);
 router.post('/sertifikat',controller.generateSertifikat);
+router.post('/transkrip',controller.generateTranskrip);
 router.post('/buatHTML',controller.buatHTML);
 router.get('/stakeholder', controller.pageChecker);
 //router.post('/check',upload.any(),controller.check);
