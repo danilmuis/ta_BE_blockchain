@@ -251,7 +251,7 @@
                     "<p>&#10004; Valid</p>" +
                     "<p>File Hash Value: " + message + "</p>"
                     );
-                } else {
+                }else if(message === '0') {
                     $("#responseText").html("<p>&#x2612; Tidak Valid</p>");
                 };
             }

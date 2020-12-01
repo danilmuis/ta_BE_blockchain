@@ -64,36 +64,36 @@
                                             <form action="/sertifikat" method="post" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label for="nomor">Nomor</label>
-                                                    <input name='nomor' type="text" value="" class="form-control" id="nomor">
+                                                    <input name='nomor' type="text" value="" class="form-control" id="nomor" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="logo">Logo Universitas</label>
-                                                    <input name='logo' type="file" class="form-control" id="logo">
+                                                    <input name='logo' type="file" class="form-control" id="logo" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="pas">Pas Foto</label>
-                                                    <input name='pas' type="file" class="form-control" id="pas">
+                                                    <input name='pas' type="file" class="form-control" id="pas" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="lembaga">Nama Lembaga</label>
-                                                    <input name='lembaga' type="text" class="form-control" id="lembaga">
+                                                    <input name='lembaga' type="text" class="form-control" id="lembaga" required>
                                                 </div>
                                                 <div class=" form-group">
                                                     <label for="exampleFormControlInput1">Nama</label>
-                                                    <input name='nama' type="text" class="form-control"
+                                                    <input name='nama' type="text" class="form-control" required
                                                         id="exampleFormControlInput1">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="gelar">Gelar</label>
-                                                    <input name='gelar' type="text" class="form-control" id="gelar">
+                                                    <input name='gelar' type="text" class="form-control" id="gelar" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="ttl">Tempat, Tanggal Lahir</label>
-                                                    <input name='ttl' type="text" class="form-control" id="ttl">
+                                                    <input name='ttl' type="text" class="form-control" id="ttl" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nim">Nomor Induk Mahasiswa</label>
-                                                    <input name='nim' type="text" class="form-control" id="nim">
+                                                    <input name='nim' type="text" class="form-control" id="nim" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="jenjang">Jenjang Pendidikan</label>
@@ -106,30 +106,35 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="prodi">Program Studi</label>
-                                                    <input name='prodi' type="text" class="form-control" id="prodi">
+                                                    <input name='prodi' type="text" class="form-control" id="prodi" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="tglLulus">Tanggal Lulus</label>
-                                                    <input name='tglLulus' type="date" class="form-control"
+                                                    <input name='tglLulus' type="date" class="form-control" required
                                                         id="tglLulus">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="rektor">Rektor</label>
-                                                    <input name='rektor' type="text" class="form-control" id="rektor">
+                                                    <input name='rektor' type="text" class="form-control" id="rektor" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="rektor">NIP Rektor</label>
-                                                    <input name='nipRektor' type="text" class="form-control"
+                                                    <input name='nipRektor' type="text" class="form-control" required
                                                         id="nipRektor">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="dekan">Dekan</label>
-                                                    <input name='dekan' type="text" class="form-control" id="dekan">
+                                                    <input name='dekan' type="text" class="form-control" id="dekan" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="dekan">NIP Dekan</label>
-                                                    <input name='nipDekan' type="text" class="form-control"
+                                                    <input name='nipDekan' type="text" class="form-control" required
                                                         id="nipDekan">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="email">Email</label>
+                                                    <input name='email' type="email" class="form-control" placeholder = "Dibutuhkan untuk mengirim ijazah ke email" required
+                                                        id="email">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary"
                                                     style="background-color:#1c3b61;">Add Ijazah</button>

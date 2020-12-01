@@ -232,7 +232,7 @@ setupBlockchain(){
     cat /home/mdm.txt | grep enode > /var/www/html/bootnode.txt
     BOOTNODE=$(cat /var/www/html/bootnode.txt)
     echo "INI : BOOTNODE=${BOOTNODE}"
-    echo "export BOOTNODE=$(cat /var/www/html/bootnode.txt)" >> /etc/profile
+    echo "export BOOTNODE=${BOOTNODE}" >> /etc/profile
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     sleep 15
     bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &

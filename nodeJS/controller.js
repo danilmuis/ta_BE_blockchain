@@ -2,6 +2,7 @@
 var konek = require('./konek_blockchain');
 var blockchain = require('./methodBlockchain');
 const fs = require('fs');
+const nodemailer = require('nodemailer');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
 
@@ -46,24 +47,54 @@ exports.generateSertifikat = async function(req,res){
     await browser.close();
     //PANGGIL IPFS-CTL ADD
     var hash = execSync(`ipfs-cluster-ctl add ${nama_file} | awk '{print $2}'`)+'';
-    //var file_path = path.join(__dirname+'/../',nama_file);
+    var file_path = path.join(__dirname+'/../',nama_file);
     //console.log(file_path);
     hash = hash.substr(0, hash.length-1)
     console.log("HASH: "+(hash));
     //LALU SEND HASILNYA KE BLOCKCHAIN
     await blockchain.setIjazah(konek,hash);
     //LALU SEND FILE KE CLIENT
-    res.status(200);
     //res.contentType("application/pdf");
-    res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
-    res.download(nama_file,(err)=>{
-        if(err){
-            res.send('ERROR');
-        }
+    // res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
+    // res.download(nama_file,(err)=>{
+    //     if(err){
+    //         res.send('ERROR');
+    //     }
         
-    });   
+    // });   
+    //SEND EMAIL
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'sivilchain@gmail.com',
+            pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
+        }
+    });
+    const mailOptions = {
+        from: 'sivilchain@gmail.com',
+        to: req.body.email,
+        subject: 'File Ijazah',
+        text: req.body.message,
+        attachments: [{
+            path: file_path,
+            contentType: 'application/pdf'
+        }]
+    };
+    transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+            //res.render('transkrip')
+            execSync(`rm ${nama_file}`);
+            res.status(200);
+
+            res.send('DONEEE');
+
+
+        }
+    });
     //res.send(data_file);
-    execSync(`rm ${nama_file}`);
     //res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
 
     console.log("DONE PDF ");
@@ -93,18 +124,19 @@ exports.pageChecker = function(req, res) {
 exports.check = async function(req,res){
     var file = (req.files.img_logo);
     var path = './ijazah/'+file.name;
-    file.mv(path);
-    var output = execSync(`ipfs add ${path}`);
+    await file.mv(path);
+    var output = execSync(`ipfs add ${path} | awk '{print $2}`);
+    output = output.substr(0, output.length-1)
     execSync(`rm ${path}`);
     
     var ijazah = ijazahToJSON(await blockchain.getIjazah(konek));
-    var output = 'ijazah1';
+    //var output = 'ijazah1';
     console.log(ijazah);
     var result = getIjazahByHash(ijazah,output);
     console.log(result);
     if(result.length >0){
         res.render('blockchainserver',{
-            'message' : result[0].data 
+            'message' : result[0].data
         });
     }else{
         res.render('blockchainserver',{
