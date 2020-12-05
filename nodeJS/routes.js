@@ -2,13 +2,13 @@
 var router =require('express').Router();
 var controller = require('./controller');
 
-router.get('/',controller.index);
+router.get('/dashboard',controller.index);
 router.post('/send',controller.send);
 router.get('/contract',controller.contract);
 router.post('/find',controller.find);
 router.post('/setIjazah',controller.setIjazah);
 router.get('/getIjazah',controller.getIjazah);
-router.get('/dashboard',controller.dashboard);
+router.get('/',controller.dashboard);
 router.get('/admin',controller.admin);
 router.get('/approval',controller.approval);
 router.get('/transkrip',controller.transkrip);

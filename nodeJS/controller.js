@@ -61,6 +61,8 @@ exports.generateTranskrip = async function(req,res){
     //SEND EMAIL
     const transporter = nodemailer.createTransport({
         service: 'gmail',
+        port: 465,
+        secure: true, 
         auth: {
             user: 'sivilchain@gmail.com',
             pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
@@ -139,6 +141,8 @@ exports.generateSertifikat = async function(req,res){
     //SEND EMAIL
     const transporter = nodemailer.createTransport({
         service: 'gmail',
+        port: 465,
+        secure: true,
         auth: {
             user: 'sivilchain@gmail.com',
             pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
