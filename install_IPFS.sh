@@ -232,16 +232,16 @@ setupBlockchain(){
     cat /home/mdm.txt | grep enode > /var/www/html/bootnode.txt
     BOOTNODE=$(cat /var/www/html/bootnode.txt)
     echo "INI : BOOTNODE=${BOOTNODE}"
-    echo "export BOOTNODE=${BOOTNODE}" >> /etc/profile
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
+    echo "export BOOTNODE=$(cat /var/www/html/bootnode.txt)" >> /etc/profile
+    nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     sleep 15
-    bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+    nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
     npm config set user 0
     npm config set unsafe-perm true
     sleep 15
     npm install
     npm run create
-    echo -e "nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
+    echo "nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
 sleep 5
 nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
 sleep 15
@@ -294,7 +294,7 @@ else
         setupBlockchain
         echo -e "${RED} [*] FINISH INSTALLING > WAITING 10 SEC TO REBOOT"
         sleep 10
-        reboot
+        #reboot
     elif [ $1 -eq 1 ]
     then
         echo -e "${GREEN}"
@@ -314,7 +314,7 @@ else
         installGeth
         echo -e "${RED} [*] FINISH INSTALLING > WAITING 10 SEC TO REBOOT"
         sleep 10
-        reboot
+        #reboot
     else
         usage
     fi
