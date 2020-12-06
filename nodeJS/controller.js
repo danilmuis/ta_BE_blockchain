@@ -207,9 +207,9 @@ exports.check = async function(req,res){
     var file = (req.files.img_logo);
     var path = './ijazah/'+file.name;
     await file.mv(path);
-    var output = execSync(`ipfs add ${path} | awk '{print $2}'`)+'';
+    var output = execSync(`ipfs add "${path}" | awk '{print $2}'`)+'';
     output = output.substr(0, output.length-1)
-    execSync(`rm ${path}`);
+    execSync(`rm "${path}"`);
     
     var ijazah = ijazahToJSON(await blockchain.getIjazah(konek));
     //var output = 'ijazah1';
