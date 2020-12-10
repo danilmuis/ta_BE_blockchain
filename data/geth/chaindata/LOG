@@ -1,0 +1,6 @@
+=============== Dec 10, 2020 (+07) ===============
+09:18:02.625139 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+09:18:02.702930 db@open opening
+09:18:02.706919 version@stat F·[] S·0B[] Sc·[]
+09:18:02.760776 db@janitor F·2 G·0
+09:18:02.760776 db@open done T·57.846ms
