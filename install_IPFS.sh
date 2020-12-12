@@ -249,6 +249,17 @@ cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/
 /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm start & ">> $HOME/.bashrc
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
 }
+setupBlockchainPeer(){
+    cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
+    echo -e "${YELLOW}"
+    echo -e "[*] SETUP BLOCKCHAIN PEER"
+    
+    BOOTNODE=$(curl ${IP}/bootnode.txt | awk -F '=' '{print $2}')
+    echo "INI : BOOTNODE=${BOOTNODE}"
+    echo "export BOOTNODE=$(curl ${IP}/bootnode.txt | awk -F '=' '{print $2}')" >> /etc/profile
+    nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node${3}/start.sh &  
+    echo -e "[*] FINISH SETUP BLOCKCHAIN PEER"
+}
 checkRoot(){
     if [ $(whoami) == "root" ]
     then
@@ -312,6 +323,7 @@ else
         installIPFSClusterPeer
         startIPFSClusterPeer
         installGeth
+        setupBlockchainPeer
         echo -e "${RED} [*] FINISH INSTALLING > WAITING 10 SEC TO REBOOT"
         sleep 10
         #reboot
