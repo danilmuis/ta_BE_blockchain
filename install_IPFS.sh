@@ -254,9 +254,9 @@ setupBlockchainPeer(){
     echo -e "${YELLOW}"
     echo -e "[*] SETUP BLOCKCHAIN PEER"
     
-    BOOTNODE=$(curl ${IP}/bootnode.txt | awk -F '=' '{print $2}')
+    BOOTNODE=$(curl ${IP}/bootnode.txt)
     echo "INI : BOOTNODE=${BOOTNODE}"
-    echo "export BOOTNODE=$(curl ${IP}/bootnode.txt | awk -F '=' '{print $2}')" >> /etc/profile
+    echo "export BOOTNODE=$(curl ${IP}/bootnode.txt)" >> /etc/profile
     nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node${3}/start.sh &  
     echo -e "[*] FINISH SETUP BLOCKCHAIN PEER"
 }
