@@ -603,3 +603,34 @@
 =============== Dec 11, 2020 (+07) ===============
 00:19:57.090185 db@close closing
 00:19:57.173960 db@close done T·82.7782ms
+=============== Dec 14, 2020 (+07) ===============
+00:02:36.677620 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+00:02:36.964854 version@stat F·[0 1] S·428B[0B 428B] Sc·[0.00 0.00]
+00:02:36.964854 db@open opening
+00:02:36.964854 journal@recovery F·1
+00:02:36.966849 journal@recovery recovering @139
+00:02:37.571230 memdb@flush created L0@142 N·14531 S·128KiB "loc..seq,v67227":"n:\xba..ong,v67223"
+00:02:37.574222 version@stat F·[1 1] S·128KiB[128KiB 428B] Sc·[0.25 0.00]
+00:02:37.728810 db@janitor F·5 G·1
+00:02:37.728810 db@janitor removing table-138
+00:02:37.738784 db@open done T·773.9298ms
+00:20:50.672326 db@close closing
+00:20:50.674320 db@close done T·996.9µs
+=============== Dec 15, 2020 (+07) ===============
+11:41:44.070182 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:41:44.095113 version@stat F·[1 1] S·128KiB[128KiB 428B] Sc·[0.25 0.00]
+11:41:44.096110 db@open opening
+11:41:44.096110 journal@recovery F·1
+11:41:44.100099 journal@recovery recovering @143
+11:41:44.160937 memdb@flush created L0@145 N·486 S·4KiB "loc..seq,v81754":"n:\xba..ong,v81755"
+11:41:44.163929 version@stat F·[2 1] S·133KiB[133KiB 428B] Sc·[0.50 0.00]
+11:41:44.245710 db@janitor F·5 G·0
+11:41:44.245710 db@open done T·149.5999ms
+11:41:44.320510 table@compaction L0·2 -> L1·1 S·133KiB Q·82241
+11:41:44.424231 table@build created L1@148 N·8 S·426B "loc..seq,v81754":"version,v1"
+11:41:44.424231 version@stat F·[0 1] S·426B[0B 426B] Sc·[0.00 0.00]
+11:41:44.472104 table@compaction committed F-2 S-133KiB Ke·0 D·15017 T·151.5933ms
+11:41:44.483074 table@remove removed @142
+11:41:44.495049 table@remove removed @141
+12:33:10.172521 db@close closing
+12:33:10.173520 db@close done T·998.9µs

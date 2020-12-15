@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
 const puppeteer = require('puppeteer');
+const readXlsxFile = require("read-excel-file/node");
 
 
 const execSync = require('child_process').execSync;
@@ -100,6 +101,7 @@ exports.generateTranskrip = async function(req,res){
     });
 }
 exports.generateSertifikat = async function(req,res){
+    
     var template = fs.readFileSync('./reportSertifikat.html','utf8');
     var latar = fs.readFileSync('./latar sertifikat.png').toString('base64');
     //console.log(latar);
@@ -183,6 +185,25 @@ exports.generateSertifikat = async function(req,res){
     console.log("DONE PDF ");
     
 }
+exports.upload = async function(req,res){
+    const file = req.files.file;
+    if(file.mimetype.includes('excel') || file.mimetype.includes('csv') || file.mimetype.includes("spreadsheetml")){
+        var path = './ijazah/'+file.name;
+        await file.mv(path);
+        readXlsxFile(path).then((rows)=>{
+          rows.shift();
+          rows.forEach((row)=>{
+              console.log(row);
+          })  
+        });
+        console.log(exports.generateSertifikat.mdm);
+        res.status(200);
+        res.json({'message':'uploaded'});
+    }else{
+        res.status(403);
+        res.json({'message':'file type not supported'});
+    }
+}
 exports.buatHTML = async function(req,res){
     var template = fs.readFileSync('template.html','utf8');
     var compiled = ejs.compile(template);
@@ -205,7 +226,8 @@ exports.pageChecker = function(req, res) {
     res.render('blockchainserver',{'message':''});
 }
 exports.check = async function(req,res){
-    var file = (req.files.img_logo);
+    var file = (req.files.file);
+    
     var path = './ijazah/'+file.name;
     await file.mv(path);
     var output = execSync(`ipfs add "${path}" | awk '{print $2}'`)+'';
@@ -218,13 +240,13 @@ exports.check = async function(req,res){
     var result = getIjazahByHash(ijazah,output);
     console.log(result);
     if(result.length >0){
-        res.render('blockchainserver',{
+        res.status(200);
+        res.json({
             'message' : result[0].data
         });
     }else{
-        res.render('blockchainserver',{
-            'message' : '0'
-        });
+        res.status(404);
+        res.send('not found');
         //res.json({'message':'NOT FOUND'})
     }
 }

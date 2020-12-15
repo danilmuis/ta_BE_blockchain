@@ -39,9 +39,11 @@ miner.start(1)
 geth attach http://127.0.0.1:8545
 abi=[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"data","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getIjazah","outputs":[{"components":[{"internalType":"string","name":"data","type":"string"},{"internalType":"bool","name":"kaprodi","type":"bool"},{"internalType":"bool","name":"dekan","type":"bool"},{"internalType":"bool","name":"rektor","type":"bool"}],"internalType":"struct SimpleStorage.Ijazah[]","name":"","type":"tuple[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"list_ijazah","outputs":[{"internalType":"string","name":"data","type":"string"},{"internalType":"bool","name":"kaprodi","type":"bool"},{"internalType":"bool","name":"dekan","type":"bool"},{"internalType":"bool","name":"rektor","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"loadHash","outputs":[{"internalType":"string[]","name":"","type":"string[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"hash","type":"string"}],"name":"saveHash","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"data","type":"string"}],"name":"setIjazah","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 eth.defaultAccount=eth.accounts[0]
-contractAddress="0xeA1465B1F7D362c04fddA3507402Ffa4F117140A"
+contractAddress="0x47B4320b50FEA7D6B1fe7f7315BE2E6759936531"
 contract=web3.eth.contract(abi)
 simple=contract.at(contractAddress)
+
+contractAddress="0xeA1465B1F7D362c04fddA3507402Ffa4F117140A"
 
 
 #IPFS

@@ -98,6 +98,8 @@ bootstrapingIPFS(){
 testIPFS(){
     echo -e "${YELLOW}"
     echo -e "[*] TESTING IPFS"
+    ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
+    ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["POST"]'
     /usr/local/bin/ipfs daemon & 
     echo -e "WAITING 10 SEC TO LET IPFS START"
     sleep 10
