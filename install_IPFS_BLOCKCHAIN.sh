@@ -250,6 +250,8 @@ sleep 15
 cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/
 /usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm start & ">> $HOME/.bashrc
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
+    echo "Starting DWebApp"
+    npm start &
 }
 setupBlockchainPeer(){
     cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
