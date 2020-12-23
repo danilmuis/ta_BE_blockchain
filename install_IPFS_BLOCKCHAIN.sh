@@ -97,7 +97,7 @@ bootstrapingIPFS(){
 }
 testIPFS(){
     echo -e "${YELLOW}"
-    echo -e "[*] TESTING IPFS"
+    echo -e "[*] ALLOWING CORS AND TESTING IPFS"
     ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
     ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["POST"]'
     /usr/local/bin/ipfs daemon & 
@@ -109,7 +109,7 @@ testIPFS(){
     echo -e "[*] READ FILE.txt FROM IPFS"
     /usr/local/bin/ipfs cat ${HASH}
     echo -e "${GREEN}"
-    echo -e "[*] FINISH TESTING IPFS "
+    echo -e "[*] FINISH ALLOWING CORS AND TESTING IPFS "
 }
 IPFSForever(){
     echo -e "${YELLOW}"
