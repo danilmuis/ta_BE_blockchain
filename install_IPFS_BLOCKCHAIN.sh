@@ -173,6 +173,8 @@ startIPFSCluster(){
     echo -e "[*] STARTING IPFS CLUSTER"
     $GOPATH/bin/ipfs-cluster-service init
     $GOPATH/bin/ipfs-cluster-service daemon &
+    echo "$GOPATH/bin/ipfs-cluster-service daemon &
+sleep 10">> $HOME/.bashrc
     echo -e "WAITING 10 SEC TO LET IPFS CLUSTER START"
     sleep 10
     CLUSTER_IPFS_ID=$($GOPATH/bin/ipfs-cluster-ctl id | awk '{print $2}' | grep 9096 | grep -v 127.0.0.1)
@@ -187,6 +189,8 @@ startIPFSClusterPeer(){
     echo -e "[*] STARTING IPFS CLUSTER"
     $GOPATH/bin/ipfs-cluster-service init
     $GOPATH/bin/ipfs-cluster-service daemon --bootstrap $CLUSTER &
+    echo "$GOPATH/bin/ipfs-cluster-service daemon --bootstrap $(curl ${IP}/cluster_ipfs.txt) & 
+sleep 10">> $HOME/.bashrc
     echo -e "WAITING 10 SEC TO LET IPFS CLUSTER START"
     sleep 10
     # echo "
