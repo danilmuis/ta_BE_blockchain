@@ -8,7 +8,7 @@ var ejs = require('ejs');
 var pdf = require('html-pdf');
 const puppeteer = require('puppeteer');
 const readXlsxFile = require("read-excel-file/node");
-
+const mailService = require('./mailService');
 
 const execSync = require('child_process').execSync;
 exports.dashboard = function(req,res){
@@ -50,55 +50,42 @@ exports.generateTranskrip = async function(req,res){
     hash = hash.substr(0, hash.length-1)
     console.log("HASH: "+(hash));
     //LALU SEND HASILNYA KE BLOCKCHAIN
-    await blockchain.setIjazah(konek,hash);
-    //LALU SEND FILE KE CLIENT
-    // res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
-    // res.download(nama_file,(err)=>{
-    //     if(err){
-    //         res.send('ERROR');
-    //     }
-        
-    // });   
+    await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,false);
+    await mailService.kirimEmail(req.body.email,file_path,nama_file,'Transkrip');
     //SEND EMAIL
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        port: 465,
-        secure: true, 
-        auth: {
-            user: 'sivilchain@gmail.com',
-            pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
-        }
-    });
-    const mailOptions = {
-        from: 'sivilchain@gmail.com',
-        to: req.body.email,
-        subject: 'File Transkrip',
-        text: req.body.message,
-        attachments: [{
-            path: file_path,
-            contentType: 'application/pdf'
-        }]
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-            res.status(500);
-            res.json({'message':'EMAIL Error'});
-        } else {
-            console.log('Email sent: ' + info.response);
-            //res.render('transkrip')
-            //var data = fs.readFileSync(file_path);
-            res.status(200);
-            //res.contentType("application/pdf");
-            //res.send(html);
-            res.json({'message' : 'Done'});
-            //res.send(data);
-            execSync(`rm ${nama_file}`);
+    // const transporter = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     port: 465,
+    //     secure: true, 
+    //     auth: {
+    //         user: 'sivilchain@gmail.com',
+    //         pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
+    //     }
+    // });
+    // const mailOptions = {
+    //     from: 'sivilchain@gmail.com',
+    //     to: req.body.email,
+    //     subject: 'File Transkrip',
+    //     text: req.body.message,
+    //     attachments: [{
+    //         path: file_path,
+    //         contentType: 'application/pdf'
+    //     }]
+    // };
+    // transporter.sendMail(mailOptions, function (error, info) {
+    //     if (error) {
+    //         console.log(error);
+    //         res.status(500);
+    //         res.json({'message':'EMAIL Error'});
+    //     } else {
+    //         console.log('Email sent: ' + info.response);
+    //         res.status(200);
+    //         res.json({'message' : 'Done'});
+    //     execSync(`rm ${nama_file}`);
 
+    //     }
+    // });
 
-
-        }
-    });
 }
 exports.generateSertifikat = async function(req,res){
     
@@ -132,57 +119,46 @@ exports.generateSertifikat = async function(req,res){
     hash = hash.substr(0, hash.length-1)
     console.log("HASH: "+(hash));
     //LALU SEND HASILNYA KE BLOCKCHAIN
-    await blockchain.setIjazah(konek,hash);
-    //LALU SEND FILE KE CLIENT
-    // res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
-    // res.download(nama_file,(err)=>{
-    //     if(err){
-    //         res.send('ERROR');
-    //     }
-        
-    // });   
+    await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,true);
+    
     //SEND EMAIL
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        port: 465,
-        secure: true,
-        auth: {
-            user: 'sivilchain@gmail.com',
-            pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
-        }
-    });
-    const mailOptions = {
-        from: 'sivilchain@gmail.com',
-        to: req.body.email,
-        subject: 'File Ijazah',
-        text: req.body.message,
-        attachments: [{
-            path: file_path,
-            contentType: 'application/pdf'
-        }]
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-            res.status(500)
-            res.json({'message':'EMAIL Error'});
-        } else {
-            console.log('Email sent: ' + info.response);
-            //res.render('transkrip')
-            res.status(200);
-            // res.contentType("application/pdf");
-            res.json({'message':'DONE'});
-            // res.send(data);
-            execSync(`rm ${nama_file}`);
+    await mailService.kirimEmail(req.body.email,file_path,nama_file,'Transkrip');
+    // const transporter = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     port: 465,
+    //     secure: true,
+    //     auth: {
+    //         user: 'sivilchain@gmail.com',
+    //         pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
+    //     }
+    // });
+    // const mailOptions = {
+    //     from: 'sivilchain@gmail.com',
+    //     to: req.body.email,
+    //     subject: 'File Ijazah',
+    //     text: req.body.message,
+    //     attachments: [{
+    //         path: file_path,
+    //         contentType: 'application/pdf'
+    //     }]
+    // };
+    // transporter.sendMail(mailOptions, function (error, info) {
+    //     if (error) {
+    //         console.log(error);
+    //         res.status(500)
+    //         res.json({'message':'EMAIL Error'});
+    //     } else {
+    //         console.log('Email sent: ' + info.response);
+    //         //res.render('transkrip')
+    //         res.status(200);
+    //         // res.contentType("application/pdf");
+    //         res.json({'message':'DONE'});
+    //         // res.send(data);
+    //         execSync(`rm ${nama_file}`);
+    //     }
+    // });
 
 
-
-        }
-    });
-    //res.send(data_file);
-    //res.json({'message' : 'Ijazah berhasil dikirim : ' + hash});
-
-    console.log("DONE PDF ");
     
 }
 exports.upload = async function(req,res){
@@ -227,18 +203,13 @@ exports.pageChecker = function(req, res) {
 }
 exports.check = async function(req,res){
     var file = (req.files.file);
-    
     var path = './ijazah/'+file.name;
     await file.mv(path);
     var output = execSync(`ipfs add "${path}" | awk '{print $2}'`)+'';
     output = output.substr(0, output.length-1)
     execSync(`rm "${path}"`);
-    
     var ijazah = ijazahToJSON(await blockchain.getIjazah(konek));
-    //var output = 'ijazah1';
-    console.log(ijazah);
     var result = getIjazahByHash(ijazah,output);
-    console.log(result);
     if(result.length >0){
         res.status(200);
         res.json({
@@ -247,7 +218,6 @@ exports.check = async function(req,res){
     }else{
         res.status(404);
         res.send('not found');
-        //res.json({'message':'NOT FOUND'})
     }
 }
 exports.index = async function(req,res){
@@ -286,69 +256,6 @@ exports.getIjazah = async function(req,res){
     res.json(ijazahToJSON(ijazah));
 }
 
-exports.findUsers = function(req,res){
-    var id = req.params.id
-    connection.query('SELECT * FROM users WHERE id = ?',
-    [id],
-    function(err,result,fields){
-        if(err){
-            console.log(err)
-            response.fail(err,res)
-        }else{
-            response.ok(result,res)
-        }
-    })
-}
-
-exports.createUsers = function(req,res){
-    var nama = req.body.nama
-    var email = req.body.email
-    var tanggal = req.body.tanggal
-
-    connection.query('INSERT INTO users (nama,email,tanggal) values (?,?,?)',
-    [nama,email,tanggal], 
-    function(err,result,fields){
-        if(err){
-            console.log(err)
-            response.fail(err,res)
-        }else{
-            response.ok('User berhasil ditambahkan',res)
-        }
-    })
-}
-
-exports.updateUsers = function(req,res){
-    var id = req.params.id
-    var nama = req.body.nama
-    var email = req.body.email
-    var tanggal = req.body.tanggal
-
-    connection.query('UPDATE users SET nama = ?, email = ?, tanggal = ? WHERE id = ?', 
-    [nama,email,tanggal,id],
-    function(err,result,fields){
-        if(err){
-            console.log(err)
-            response.fail(err,res)
-        }else{
-            response.ok('User berhasil diupdate',res)
-        }
-    })
-}
-
-exports.deleteUsers = function(req,res){
-    var id = req.body.id
-
-    connection.query('DELETE FROM users WHERE id = ?',
-    [id],
-    function(err,result,fields){
-        if(err){
-            console.log(err)
-            response.fail(err,res)
-        }else{
-            response.ok('User dengan id '+id+' berhasil dihapus',res)
-        }
-    })
-}
 
 function ijazahToJSON(ijazah){
     var data = [];

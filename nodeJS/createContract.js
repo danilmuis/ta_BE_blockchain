@@ -31,8 +31,6 @@ deploy_contract.deploy(payload).send(parameter, (err, transactionHash) => {
     deploy_contract = new web3.eth.Contract(JSON.parse(abi),contract_address,{parameter});
     console.log("KONTRAK BERHASIL DIBUAT... SILAHKAN JALANKAN\n npm start");
     return;
-    
-    
 });
 //console.log("KONTRAK BERHASIL DIBUAT... SILAHKAN JALANKAN KEMBALI");
 

@@ -1,11 +1,11 @@
-// SPDX-License-Identifier: MIT
-//pragma solidity >=0.4.21 <0.7.0;
 pragma experimental ABIEncoderV2;
-//pragma solidity ^0.4.24;
 contract SimpleStorage {
   string[] public data; 
   struct Ijazah{
     string data;
+    string nik;
+    string nama;
+    bool berkas;
     bool kaprodi;
     bool dekan;
     bool rektor;
@@ -14,9 +14,9 @@ contract SimpleStorage {
   
   constructor() public{}
   
-  function setIjazah(string memory data) public{
+  function setIjazah(string memory data, string memory nik, string memory nama, bool berkas) public{
     Ijazah memory ijazah; 
-    ijazah = Ijazah(data,false,false,false);
+    ijazah = Ijazah(data,nik,nama,berkas,false,false,false);
     list_ijazah.push(ijazah);
   }
   function getIjazah() public view returns(Ijazah[] memory){
@@ -25,7 +25,8 @@ contract SimpleStorage {
   
   function saveHash(string memory hash) public{
     data.push(hash);
-  }function loadHash() public view returns (string[] memory){
+  }
+  function loadHash() public view returns (string[] memory){
     return data;
   }
   
