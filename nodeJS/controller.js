@@ -3,11 +3,9 @@ var konek = require('./konek_blockchain');
 var blockchain = require('./methodBlockchain');
 const fs = require('fs');
 const path = require('path');
-const nodemailer = require('nodemailer');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
 const puppeteer = require('puppeteer');
-const readXlsxFile = require("read-excel-file/node");
 const mailService = require('./mailService');
 
 const execSync = require('child_process').execSync;
@@ -51,41 +49,11 @@ exports.generateTranskrip = async function(req,res){
     console.log("HASH: "+(hash));
     //LALU SEND HASILNYA KE BLOCKCHAIN
     await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,false);
-    await mailService.kirimEmail(req.body.email,file_path,nama_file,'Transkrip',res);
+
     //SEND EMAIL
-    // const transporter = nodemailer.createTransport({
-    //     service: 'gmail',
-    //     port: 465,
-    //     secure: true, 
-    //     auth: {
-    //         user: 'sivilchain@gmail.com',
-    //         pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
-    //     }
-    // });
-    // const mailOptions = {
-    //     from: 'sivilchain@gmail.com',
-    //     to: req.body.email,
-    //     subject: 'File Transkrip',
-    //     text: req.body.message,
-    //     attachments: [{
-    //         path: file_path,
-    //         contentType: 'application/pdf'
-    //     }]
-    // };
-    // transporter.sendMail(mailOptions, function (error, info) {
-    //     if (error) {
-    //         console.log(error);
-    //         res.status(500);
-    //         res.json({'message':'EMAIL Error'});
-    //     } else {
-    //         console.log('Email sent: ' + info.response);
-    //         res.status(200);
-    //         res.json({'message' : 'Done'});
-    //     execSync(`rm ${nama_file}`);
+    await mailService.kirimEmail(req.body.email,file_path,nama_file,'Transkrip',res);
 
-    //     }
-    // });
-
+    
 }
 exports.generateSertifikat = async function(req,res){
     
@@ -123,79 +91,6 @@ exports.generateSertifikat = async function(req,res){
     
     //SEND EMAIL
     await mailService.kirimEmail(req.body.email,file_path,nama_file,'Ijazah',res);
-    // const transporter = nodemailer.createTransport({
-    //     service: 'gmail',
-    //     port: 465,
-    //     secure: true,
-    //     auth: {
-    //         user: 'sivilchain@gmail.com',
-    //         pass: '123Sivil' // naturally, replace both with your real credentials or an application-specific password
-    //     }
-    // });
-    // const mailOptions = {
-    //     from: 'sivilchain@gmail.com',
-    //     to: req.body.email,
-    //     subject: 'File Ijazah',
-    //     text: req.body.message,
-    //     attachments: [{
-    //         path: file_path,
-    //         contentType: 'application/pdf'
-    //     }]
-    // };
-    // transporter.sendMail(mailOptions, function (error, info) {
-    //     if (error) {
-    //         console.log(error);
-    //         res.status(500)
-    //         res.json({'message':'EMAIL Error'});
-    //     } else {
-    //         console.log('Email sent: ' + info.response);
-    //         //res.render('transkrip')
-    //         res.status(200);
-    //         // res.contentType("application/pdf");
-    //         res.json({'message':'DONE'});
-    //         // res.send(data);
-    //         execSync(`rm ${nama_file}`);
-    //     }
-    // });
-
-
-    
-}
-exports.upload = async function(req,res){
-    const file = req.files.file;
-    if(file.mimetype.includes('excel') || file.mimetype.includes('csv') || file.mimetype.includes("spreadsheetml")){
-        var path = './ijazah/'+file.name;
-        await file.mv(path);
-        readXlsxFile(path).then((rows)=>{
-          rows.shift();
-          rows.forEach((row)=>{
-              console.log(row);
-          })  
-        });
-        console.log(exports.generateSertifikat.mdm);
-        res.status(200);
-        res.json({'message':'uploaded'});
-    }else{
-        res.status(403);
-        res.json({'message':'file type not supported'});
-    }
-}
-exports.buatHTML = async function(req,res){
-    var template = fs.readFileSync('template.html','utf8');
-    var compiled = ejs.compile(template);
-    var html = compiled({
-        title : req.body.title,
-        text : req.body.text,
-    });
-    pdf.create(html).toFile('./template.pdf',function (){
-        console.log("DONEEE")
-    });
-    
-    res.send("DONE BUAT PDF");
-}
-exports.users = function(req,res){
-    
-    res.send(web3);
 }
 
 exports.pageChecker = function(req, res) {
@@ -263,7 +158,7 @@ function ijazahToJSON(ijazah){
     for(var i=0; i<ijazah.length; i++){
         x = {
             'data':ijazah[i][0],
-            'nik' : ijazah[i][1],
+            'nim' : ijazah[i][1],
             'nama' : ijazah[i][2],
             'berkas' : ijazah[i][3],
             'kaprodi': ijazah[i][4],

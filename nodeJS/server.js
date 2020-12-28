@@ -6,16 +6,11 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 
 var app = express();
-// const multer = require('multer');
-// const upload = multer();
 var port = process.env.PORT || 9000;
 var cors = require('cors');
 var bodyParser = require('body-parser');
-//var mdm = require('./nodeJS/mdm');
-
 var konek = require('./konek_blockchain');
 var blockchain = require('./methodBlockchain');
-
 
 app.use(morgan('common'));
 //app.use(helmet());
@@ -28,12 +23,8 @@ app.use(fileUpload())
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 var controller = require('./controller');
-
 var routes = require('./routes');
-
-
 app.use('/',routes);
 // app.use(function (req, res, next) {
 //     res.set("Content-Security-Policy", "default-src 'self'");
@@ -53,20 +44,9 @@ app.use((error,req,res,next) =>{
         stack : error.stack,
     });
 });
-
-app.post('/mdm',controller.generateSertifikat);
-
 run();
 
 async function run(){
-    //await mdm.createAndDeployContract();
-    
-    // await blockchain.saveHash(konek,"MUIS");
-    // var x = await blockchain.loadHash(konek);
-    // console.log(x);
-    //console.log(await contract.methods.loadHash().call());
-    //var x = contract.methods.loadHash().call();
-    //console.log(contract);
     app.listen(port,'0.0.0.0');
     console.log(`server start on http://localhost:${port} `);
 };
