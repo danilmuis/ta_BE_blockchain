@@ -173,8 +173,6 @@ startIPFSCluster(){
     echo -e "[*] STARTING IPFS CLUSTER"
     $GOPATH/bin/ipfs-cluster-service init
     $GOPATH/bin/ipfs-cluster-service daemon &
-    echo "$GOPATH/bin/ipfs-cluster-service daemon &
-sleep 10">> $HOME/.bashrc
     echo -e "WAITING 10 SEC TO LET IPFS CLUSTER START"
     sleep 10
     CLUSTER_IPFS_ID=$($GOPATH/bin/ipfs-cluster-ctl id | awk '{print $2}' | grep 9096 | grep -v 127.0.0.1)
@@ -189,8 +187,6 @@ startIPFSClusterPeer(){
     echo -e "[*] STARTING IPFS CLUSTER"
     $GOPATH/bin/ipfs-cluster-service init
     $GOPATH/bin/ipfs-cluster-service daemon --bootstrap $CLUSTER &
-    echo "$GOPATH/bin/ipfs-cluster-service daemon --bootstrap $(curl ${IP}/cluster_ipfs.txt) & 
-sleep 10">> $HOME/.bashrc
     echo -e "WAITING 10 SEC TO LET IPFS CLUSTER START"
     sleep 10
     # echo "
@@ -243,12 +239,6 @@ setupBlockchain(){
     sleep 15
     npm install
     npm run create
-    echo "nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
-sleep 5
-nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
-sleep 15
-cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/
-/usr/local/lib/nodejs/node-v12.19.0-linux-x64/bin/npm start & ">> $HOME/.bashrc
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
     echo "Starting DWebApp"
     npm start &
