@@ -24,7 +24,7 @@ eth.sendTransaction({from: eth.accounts[0], to: "0xE0489a2C85b2eDDCFB97aB02669E9
 #other node
 param={
   from: '0x7379A74A69cEcc757EDb22911eb4E65872559499',
-  gas: '0xc3500',
+  gas: '0x10c8e0',
   gasPrice: '0x6fc23ac00'
 }
 

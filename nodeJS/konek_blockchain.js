@@ -12,7 +12,7 @@ let transaction_hash = data.split('\n')[0];
 let contract_address = data.split('\n')[1];
 let parameter = {
     from: process.env.NODE1,
-    gas: '0xc3500',
+    gas: '0x10c8e0',
     gasPrice: '0x2540be400'
 };
 let abi = process.env.ABI;

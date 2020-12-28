@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.PASSWORD // naturally, replace both with your real credentials or an application-specific password
     }
 });
-const kirimEmail = ((email,file_path,nama_file,berkas)=> {
+const kirimEmail = ((email,file_path,nama_file,berkas,res)=> {
 
     const mailOptions = {
         from: process.env.EMAIL,

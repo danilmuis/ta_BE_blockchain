@@ -2,7 +2,7 @@
 const Web3 = require('web3');
 let parameter = {
     from: process.env.NODE1,
-    gas: '0xc3500',
+    gas: '0x10c8e0',
     gasPrice: '0x2540be400'
 };
 exports.loadHash = async function(contract){

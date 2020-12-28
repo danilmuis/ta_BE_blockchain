@@ -5,12 +5,10 @@ const EthereumTx = require('ethereumjs-tx').Transaction;
 let deploy_contract = undefined;
 
 let web3 = new Web3(new Web3.providers.HttpProvider(process.env.RPC_URL));
-let data = fs.readFileSync('./address.txt','utf8');
-let transaction_hash = data.split('\n')[0];
-let contract_address = data.split('\n')[1];
+
 let parameter = {
     from: process.env.NODE1,
-    gas: '0xc3500',
+    gas: '0x10c8e0',
     gasPrice: '0x2540be400'
 };
 let abi = process.env.ABI;

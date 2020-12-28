@@ -51,7 +51,7 @@ exports.generateTranskrip = async function(req,res){
     console.log("HASH: "+(hash));
     //LALU SEND HASILNYA KE BLOCKCHAIN
     await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,false);
-    await mailService.kirimEmail(req.body.email,file_path,nama_file,'Transkrip');
+    await mailService.kirimEmail(req.body.email,file_path,nama_file,'Transkrip',res);
     //SEND EMAIL
     // const transporter = nodemailer.createTransport({
     //     service: 'gmail',
@@ -122,7 +122,7 @@ exports.generateSertifikat = async function(req,res){
     await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,true);
     
     //SEND EMAIL
-    await mailService.kirimEmail(req.body.email,file_path,nama_file,'Transkrip');
+    await mailService.kirimEmail(req.body.email,file_path,nama_file,'Ijazah',res);
     // const transporter = nodemailer.createTransport({
     //     service: 'gmail',
     //     port: 465,
@@ -263,9 +263,12 @@ function ijazahToJSON(ijazah){
     for(var i=0; i<ijazah.length; i++){
         x = {
             'data':ijazah[i][0],
-            'kaprodi': ijazah[i][1],
-            'dekan' : ijazah[i][2],
-            'rektor' : ijazah[i][3],
+            'nik' : ijazah[i][1],
+            'nama' : ijazah[i][2],
+            'berkas' : ijazah[i][3],
+            'kaprodi': ijazah[i][4],
+            'dekan' : ijazah[i][5],
+            'rektor' : ijazah[i][6],
             }
         data.push(x);
     }
