@@ -64,7 +64,7 @@ exports.regisStaff = async(req, res) => {
       res.status(401).send({ error: 'Password minimal 8 karakter' })
     }else if(!req.body.password.match(pass_pattern)){
         var a= 2;
-    //   res.status(401).send({ error: 'Password harus berisi angka, upper case, dan simbol' })
+        //res.status(401).send({ error: 'Password harus berisi angka, upper case, dan simbol' })
     }
 
     if(!req.body.role){
@@ -87,6 +87,37 @@ exports.regisStaff = async(req, res) => {
         });
     }
 }
+const regisSuperAdmin = (req, res) => {  
+  
+    var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+    var pass_pattern=  /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    if(!req.body.email){
+      res.status(401).send({ error: 'Email tidak boleh kosong' })
+    }else if(!req.body.email.match(mailformat)){
+      res.status(401).send({ error: 'Masukkan email dengan benar' })
+    }
+    if(!req.body.password){
+      res.status(401).send({ error: 'Password tidak boleh kosong' })
+    }else if(req.body.password.length < 8){
+      res.status(401).send({ error: 'Password minimal 8 karakter' })
+    }else if(!req.body.password.match(pass_pattern)){
+        var a= 2;
+        //res.status(401).send({ error: 'Password harus berisi angka, upper case, dan simbol' })
+    }
+
+    const email_hash = "0x" + crypto.createHash('SHA256').update(req.body.email).digest('HEX');
+    const pass_hash = "0x" + crypto.createHash('SHA256').update(req.body.password).digest('HEX');
+    const akun = userToJSON(await blockchain.getUser(konek,email_hash));
+    if(akun.email.toString() === email_hash.toString()){
+        res.status(401).send({ message : 'Email sudah terdaftar. Gunakan email lain'})
+    }else{
+        const addressStaff = process.env.NODE1;
+        blockchain.addUser(konek,email_hash, pass_hash, addressStaff, 1);
+        res.json({
+            status: 'OK'
+        });
+    }   
+};
 const nextToken = (previous) => {
     const min = 1;
     //it will provide big and save integer for JS

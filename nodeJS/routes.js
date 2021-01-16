@@ -20,5 +20,6 @@ router.post('/stakeholder',controller.check);
 
 router.post('/login',user.login);
 router.post('/regisStaff',user.regisStaff);
+router.post('/regisSuperAdmin',user.regisSuperAdmin);
 module.exports = router;
 
