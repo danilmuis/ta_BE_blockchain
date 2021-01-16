@@ -1,6 +1,7 @@
 'use strict'
 var router =require('express').Router();
 var controller = require('./controller');
+var user = require('./controller_user');
 
 router.get('/dashboard',controller.index);
 router.post('/send',controller.send);
@@ -16,5 +17,8 @@ router.post('/sertifikat',controller.generateSertifikat);
 router.post('/transkrip',controller.generateTranskrip);
 router.get('/stakeholder', controller.pageChecker);
 router.post('/stakeholder',controller.check);
+
+router.post('/login',user.login);
+router.post('/regisStaff',user.regisStaff);
 module.exports = router;
 

@@ -7,7 +7,6 @@ var ejs = require('ejs');
 var pdf = require('html-pdf');
 const puppeteer = require('puppeteer');
 const mailService = require('./mailService');
-
 const execSync = require('child_process').execSync;
 exports.dashboard = function(req,res){
     res.render('index');
@@ -169,9 +168,15 @@ function ijazahToJSON(ijazah){
     }
     return data;
 }
+
+
 function getIjazahByHash(ijazah,hash){
     return ijazah.filter(
         function(data){ return data.data == hash }
     );
 }
 
+
+
+
+  

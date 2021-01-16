@@ -11,6 +11,11 @@ let parameter = {
     gas: '0x10c8e0',
     gasPrice: '0x2540be400'
 };
+parameter = {
+    from: process.env.NODE1,
+    gas: '0x20c8e0',
+    gasPrice: '0x2540be400'
+};
 let abi = process.env.ABI;
 console.log(parameter)
 let payload = {

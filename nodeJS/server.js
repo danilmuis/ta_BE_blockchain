@@ -11,7 +11,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var konek = require('./konek_blockchain');
 var blockchain = require('./methodBlockchain');
-
+var cookieSession = require('cookie-session')
 app.use(morgan('common'));
 //app.use(helmet());
 app.use('/public',express.static('static'));
@@ -21,6 +21,11 @@ app.use(fileUpload())
 //     origin: `http://0.0.0.0:${port}`
 // }));
 app.use(cors());
+app.use(cookieSession({
+    name: 'session',
+    keys: ['secterKey'],
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 var controller = require('./controller');

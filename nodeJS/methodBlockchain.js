@@ -2,7 +2,7 @@
 const Web3 = require('web3');
 let parameter = {
     from: process.env.NODE1,
-    gas: '0x10c8e0',
+    gas: '0x20c8e0',
     gasPrice: '0x2540be400'
 };
 exports.loadHash = async function(contract){
@@ -16,4 +16,10 @@ exports.setIjazah = async function(contract,data,nim,nama,berkas){
 }
 exports.getIjazah = async function(contract){
     return await contract.methods.getIjazah().call();
+}
+exports.getUser = async function(contract,email_hash){
+    return await contract.methods.getData(email_hash).call();
+}
+exports.addUser = async function(contract, email_hash, pass_hash, addressStaff, role){
+    return await contract.methods.addUserData(email_hash, pass_hash, addressStaff, role).send(parameter);
 }
