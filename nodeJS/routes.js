@@ -17,6 +17,7 @@ router.post('/sertifikat',controller.generateSertifikat);
 router.post('/transkrip',controller.generateTranskrip);
 router.get('/stakeholder', controller.pageChecker);
 router.post('/stakeholder',controller.check);
+router.post('/signature',controller.signature);
 
 router.post('/login',user.login);
 router.post('/regisStaff',user.regisStaff);

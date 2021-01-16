@@ -141,7 +141,7 @@ exports.find = async function(req,res){
 }
 
 exports.setIjazah = async function(req,res){
-    await blockchain.setIjazah(konek,req.body.data);
+    await blockchain.setIjazah(konek,req.body.data,req.body.nim,req.body.nama,req.body.berkas);
     res.status(201);
     res.json({'message' : 'Ijazah berhasil dikirim'});
 }
@@ -149,7 +149,26 @@ exports.getIjazah = async function(req,res){
     var ijazah = await blockchain.getIjazah(konek);
     res.json(ijazahToJSON(ijazah));
 }
+exports.signature = async function(req,res){
+    var ijazah = ijazahToJSON(await blockchain.getIjazah(konek));
+    var find = ((element) => {
+        if(element.data == req.body.hash){
+            return element;
+        }
+    });
 
+    const index = (ijazah.findIndex(find));
+    if(index >= 0 ){
+        await blockchain.signature(konek,index,1);
+        res.json('updated');
+    }else{
+        res.json('notfound');
+    }
+
+    res.json((find));
+
+
+}
 
 function ijazahToJSON(ijazah){
     var data = [];

@@ -23,3 +23,7 @@ exports.getUser = async function(contract,email_hash){
 exports.addUser = async function(contract, email_hash, pass_hash, addressStaff, role){
     return await contract.methods.addUserData(email_hash, pass_hash, addressStaff, role).send(parameter);
 }
+
+exports.signature = async function(contract,index,role){
+    return await contract.methods.signature(index, role).send(parameter);
+}

@@ -87,7 +87,7 @@ exports.regisStaff = async(req, res) => {
         });
     }
 }
-const regisSuperAdmin = (req, res) => {  
+exports.regisSuperAdmin = async(req, res) => {  
   
     var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
     var pass_pattern=  /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
@@ -118,6 +118,8 @@ const regisSuperAdmin = (req, res) => {
         });
     }   
 };
+
+
 const nextToken = (previous) => {
     const min = 1;
     //it will provide big and save integer for JS
