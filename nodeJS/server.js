@@ -20,7 +20,16 @@ app.use(fileUpload())
 // app.use(cors({
 //     origin: `http://0.0.0.0:${port}`
 // }));
-app.use(cors());
+app.use(cors({
+    origin: [
+        'http://localhost:9000',
+        'https://mdm.smartsupportku.com',
+        'http://localhost:8080',
+        'http://localhost:8081'
+    ],
+    credentials: true,
+    exposedHeaders: ['set-cookie']
+}));
 app.use(cookieSession({
     name: 'session',
     keys: ['secterKey'],
