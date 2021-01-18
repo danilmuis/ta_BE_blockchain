@@ -47,7 +47,7 @@ exports.generateTranskrip = async function(req,res){
     hash = hash.substr(0, hash.length-1)
     console.log("HASH: "+(hash));
     //LALU SEND HASILNYA KE BLOCKCHAIN
-    await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,false);
+    await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,false,req.body.nomor);
 
     //SEND EMAIL
     await mailService.kirimEmail(req.body.email,file_path,nama_file,'Transkrip',res);
@@ -86,7 +86,7 @@ exports.generateSertifikat = async function(req,res){
     hash = hash.substr(0, hash.length-1)
     console.log("HASH: "+(hash));
     //LALU SEND HASILNYA KE BLOCKCHAIN
-    await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,true);
+    await blockchain.setIjazah(konek,hash,req.body.nim,req.body.nama,true,req.body.nomor);
     
     //SEND EMAIL
     await mailService.kirimEmail(req.body.email,file_path,nama_file,'Ijazah',res);
@@ -141,7 +141,7 @@ exports.find = async function(req,res){
 }
 
 exports.setIjazah = async function(req,res){
-    await blockchain.setIjazah(konek,req.body.data,req.body.nim,req.body.nama,req.body.berkas);
+    await blockchain.setIjazah(konek,req.body.data,req.body.nim,req.body.nama,req.body.berkas,req.body.nomor);
     res.status(201);
     res.json({'message' : 'Ijazah berhasil dikirim'});
 }
@@ -159,10 +159,11 @@ exports.signature = async function(req,res){
 
     const index = (ijazah.findIndex(find));
     if(index >= 0 ){
-        await blockchain.signature(konek,index,1);
-        res.json('updated');
+        await blockchain.signature(konek,index,req.session.user.role);
+        res.json({'message':'Signature Done'});
     }else{
-        res.json('notfound');
+        res.status(404);
+        res.json({'message':'Not Found'});
     }
 
     res.json((find));
@@ -182,6 +183,8 @@ function ijazahToJSON(ijazah){
             'kaprodi': ijazah[i][4],
             'dekan' : ijazah[i][5],
             'rektor' : ijazah[i][6],
+            'warek' : ijazah[i][7],
+            'nomor' : ijazah[i][8],
             }
         data.push(x);
     }

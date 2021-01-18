@@ -649,3 +649,35 @@
 17:08:54.987717 db@open done T·2.3456225s
 17:31:06.549268 db@close closing
 17:31:06.549268 db@close done T·0s
+=============== Jan 18, 2021 (+07) ===============
+10:38:49.027112 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+10:38:49.029105 version@stat F·[3 7] S·13MiB[796KiB 13MiB] Sc·[0.75 0.13]
+10:38:49.029105 db@open opening
+10:38:49.029105 journal@recovery F·1
+10:38:49.035089 journal@recovery recovering @167
+10:38:49.150779 memdb@flush created L0@169 N·2449 S·137KiB "\x11\x1a@..\xe6\xfb:,v407397":"\xfbw\xc1..`\xb1\x84,v407406"
+10:38:49.167733 version@stat F·[4 7] S·14MiB[934KiB 13MiB] Sc·[1.00 0.13]
+10:38:49.345001 db@janitor F·13 G·0
+10:38:49.345001 db@open done T·315.896ms
+10:38:49.353971 table@compaction L0·4 -> L1·7 S·14MiB Q·407423
+10:38:50.060212 table@build created L1@172 N·60179 S·2MiB "\x00Z\x12..\x18\xccg,v55163":"b\x00\x00..\xb6\aF,v29343"
+10:38:50.517689 table@build created L1@173 N·45137 S·2MiB "b\x00\x00..B\x97G,v29352":"h\x00\x00..u$\xf1,v24386"
+10:38:51.113132 table@build created L1@174 N·28375 S·2MiB "h\x00\x00..$\xf1t,v24383":"h\x00\x00..}\x90\xd6,v154362"
+10:38:51.672241 table@build created L1@175 N·26273 S·2MiB "h\x00\x00..\x90\xd6t,v154359":"h\x00\x00..\x92~\xdf,v239045"
+10:38:51.991364 table@build created L1@176 N·29073 S·2MiB "h\x00\x00..~\xdft,v239042":"h\x00\x00..;O\t,v334811"
+10:38:52.456747 table@build created L1@177 N·36404 S·2MiB "h\x00\x00..O\tt,v334808":"r\x00\x00..\x84U\xdb,v138063"
+10:38:52.631621 table@build created L1@178 N·27610 S·1MiB "r\x00\x00..\xf7\xe1\xd0,v156064":"\xff\x13\xc2..\x86\x05\xf4,v559"
+10:38:52.631621 version@stat F·[0 7] S·13MiB[0B 13MiB] Sc·[0.00 0.14]
+10:38:52.674503 table@compaction committed F-4 S-227KiB Ke·0 D·5645 T·3.3205323s
+10:38:52.676498 table@remove removed @166
+10:38:52.689463 table@remove removed @163
+10:38:52.690460 table@remove removed @160
+10:38:52.691457 table@remove removed @153
+10:38:52.697442 table@remove removed @154
+10:38:52.712401 table@remove removed @155
+10:38:52.716392 table@remove removed @156
+10:38:52.722374 table@remove removed @157
+10:38:52.723372 table@remove removed @158
+10:38:52.725366 table@remove removed @159
+11:36:52.150921 db@close closing
+11:36:52.152915 db@close done T·1.9936ms

@@ -26,11 +26,20 @@ app.use(cookieSession({
     keys: ['secterKey'],
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
+var user = require('./controller_user');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 var controller = require('./controller');
-var routes = require('./routes');
-app.use('/',routes);
+var routes_staff = require('./routes_staff');
+var routes_admin = require('./routes_admin');
+var routes_public = require('./routes_public');
+var routes_creator = require('./routes_creator');
+var middleware = require('./middleware');
+app.use('/',routes_public);
+app.use('/staff',middleware.staff,routes_staff);
+app.use('/admin',middleware.admin,routes_admin);
+app.use('/',middleware.creator,routes_creator);
+
 // app.use(function (req, res, next) {
 //     res.set("Content-Security-Policy", "default-src 'self'");
 //     next();

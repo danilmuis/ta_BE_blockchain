@@ -10,6 +10,7 @@ contract SimpleStorage {
     bool dekan;
     bool rektor;
     bool warek;
+    string nomor;
   }
   Ijazah[] public list_ijazah;
 
@@ -30,27 +31,27 @@ contract SimpleStorage {
     return (userData[email].userEmail, userData[email].userPassword, userData[email].userEthAddr, userData[email].userRole);
 	}
   
-  //1 kaprodi
-  //2 dekan
-  //3 rektor
-  //4 warek
+  //3 kaprodi
+  //4 dekan
+  //5 rektor
+  //6 warek
   function signature(uint index, uint role) public{
-    if(role == 1){
+    if(role == 3){
       list_ijazah[index].kaprodi = true;
     }
-    else if(role == 2){
+    else if(role == 4){
       list_ijazah[index].dekan = true;
     }
-    else if(role == 3){
+    else if(role == 5){
       list_ijazah[index].rektor = true;
     }
-    else if(role == 4){
+    else if(role == 6){
       list_ijazah[index].warek = true;
     }
   }
-  function setIjazah(string memory data, string memory nik, string memory nama, bool berkas) public{
+  function setIjazah(string memory data, string memory nik, string memory nama, bool berkas, string memory nomor) public{
     Ijazah memory ijazah; 
-    ijazah = Ijazah(data,nik,nama,berkas,false,false,false,false);
+    ijazah = Ijazah(data,nik,nama,berkas,false,false,false,false,nomor);
     list_ijazah.push(ijazah);
   }
   function getIjazah() public view returns(Ijazah[] memory){

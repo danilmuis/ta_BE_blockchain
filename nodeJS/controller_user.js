@@ -48,6 +48,10 @@ exports.login = async function(req,res){
         }
     }
 }
+exports.logout = (req, res) => {
+  req.session = null;
+  res.json({'message' : 'logout success'});
+}
 exports.regisStaff = async(req, res) => {  
     var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
     var pass_pattern=  /^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
@@ -69,23 +73,25 @@ exports.regisStaff = async(req, res) => {
 
     if(!req.body.role){
       res.status(401).send({ error: 'Jabatan harus dipilih' })
-    }else if(req.body.role == "0"){
-      res.status(401).send({ error: 'Pilih jabatan dengan benar' })
+    }else if(req.body.role >= 1 && req.body.role <= 6){
+      const email_hash = "0x" + crypto.createHash('SHA256').update(req.body.email).digest('HEX');
+      const pass_hash = "0x" + crypto.createHash('SHA256').update(req.body.password).digest('HEX');
+      
+      const akun = userToJSON(await blockchain.getUser(konek,email_hash));
+      if(akun.email.toString() === email_hash.toString()){
+          res.status(401).send({ message : 'Email sudah terdaftar. Gunakan email lain'})
+      }else{
+          const addressStaff = process.env.NODE1;
+          blockchain.addUser(konek,email_hash, pass_hash, addressStaff, req.body.role);
+          res.json({
+              status: 'OK'
+          });
+      }
+    }else{
+      res.status(401).send({ error: 'Pilih jabatan dengan benar' });
     }
 
-    const email_hash = "0x" + crypto.createHash('SHA256').update(req.body.email).digest('HEX');
-    const pass_hash = "0x" + crypto.createHash('SHA256').update(req.body.password).digest('HEX');
     
-    const akun = userToJSON(await blockchain.getUser(konek,email_hash));
-    if(akun.email.toString() === email_hash.toString()){
-        res.status(401).send({ message : 'Email sudah terdaftar. Gunakan email lain'})
-    }else{
-        const addressStaff = process.env.NODE1;
-        blockchain.addUser(konek,email_hash, pass_hash, addressStaff, req.body.role);
-        res.json({
-            status: 'OK'
-        });
-    }
 }
 exports.regisSuperAdmin = async(req, res) => {  
   

@@ -11,8 +11,8 @@ exports.loadHash = async function(contract){
 exports.saveHash = async function(contract,data){
     return await contract.methods.saveHash(data).send(parameter);
 }
-exports.setIjazah = async function(contract,data,nim,nama,berkas){
-    return await contract.methods.setIjazah(data,nim,nama,berkas).send(parameter);
+exports.setIjazah = async function(contract,data,nim,nama,berkas,nomor){
+    return await contract.methods.setIjazah(data,nim,nama,berkas,nomor).send(parameter);
 }
 exports.getIjazah = async function(contract){
     return await contract.methods.getIjazah().call();
