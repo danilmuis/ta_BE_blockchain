@@ -301,8 +301,9 @@ else
         startIPFSCluster
         installGeth
         setupBlockchain
-        echo -e "${RED} [*] FINISH INSTALLING > WAITING 10 SEC TO REBOOT"
         sleep 10
+        echo -e "${RED} [*] FINISH INSTALLING"
+        source /etc/profile
         #reboot
     elif [ $1 -eq 1 ]
     then
@@ -322,8 +323,9 @@ else
         startIPFSClusterPeer
         installGeth
         setupBlockchainPeer
-        echo -e "${RED} [*] FINISH INSTALLING > WAITING 10 SEC TO REBOOT"
         sleep 10
+        echo -e "${RED} [*] FINISH INSTALLING"
+        source /etc/profile
         #reboot
     else
         usage
