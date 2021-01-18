@@ -34,11 +34,13 @@ var routes_staff = require('./routes_staff');
 var routes_admin = require('./routes_admin');
 var routes_public = require('./routes_public');
 var routes_creator = require('./routes_creator');
+var routes_authenticated = require('./routes_authenticated');
 var middleware = require('./middleware');
 app.use('/',routes_public);
-app.use('/staff',middleware.staff,routes_staff);
-app.use('/admin',middleware.admin,routes_admin);
-app.use('/',middleware.creator,routes_creator);
+app.use('/',middleware.authenticated,routes_authenticated);
+app.use('/staff',middleware.authenticated,middleware.staff,routes_staff);
+app.use('/admin',middleware.authenticated,middleware.admin,routes_admin);
+app.use('/',middleware.authenticated,middleware.creator,routes_creator);
 
 // app.use(function (req, res, next) {
 //     res.set("Content-Security-Policy", "default-src 'self'");

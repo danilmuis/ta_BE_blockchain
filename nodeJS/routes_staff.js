@@ -8,7 +8,7 @@ var controller = require('./controller');
 // router.get('/contract',controller.contract);
 // router.post('/find',controller.find);
 // router.post('/setIjazah',controller.setIjazah);
-router.get('/getIjazah',controller.getIjazah);
+// router.get('/getIjazah',controller.getIjazah);
 // router.get('/',controller.dashboard);
 // router.get('/admin',controller.admin);
 // router.get('/approval',controller.approval);

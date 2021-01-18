@@ -12,7 +12,6 @@ router.get('/admin',controller.admin);
 router.get('/approval',controller.approval);
 router.get('/transkrip',controller.transkrip);
 
-router.get('/getIjazah',controller.getIjazah);
 router.post('/setIjazah',controller.setIjazah);
 router.post('/sertifikat',controller.generateSertifikat);
 router.post('/transkrip',controller.generateTranskrip);

@@ -17,7 +17,6 @@ exports.login = async function(req,res){
     const email_hash = "0x" + crypto.createHash('SHA256').update(req.body.email).digest('HEX');
     const pass_hash = "0x" + crypto.createHash('SHA256').update(req.body.password).digest('HEX');
 
-    console.log(email_hash, pass_hash);
     if(req.body.email == "admin@admin.com" && req.body.password == "superAdm1n"){
       const user = {
         "email" : req.body.email,
@@ -37,8 +36,6 @@ exports.login = async function(req,res){
             
             akun.token = nextToken(akun.token);
             req.session.user = new SessionUser(akun);
-            console.log(req.session.user);
-            console.log(akun);
             res.json({
                 status: 'OK',
                 user: req.session.user
