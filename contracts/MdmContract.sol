@@ -33,8 +33,8 @@ contract SimpleStorage {
   
   //3 kaprodi
   //4 dekan
-  //5 rektor
-  //6 warek
+  //5 wakil rektor
+  //6 rektor
   function signature(uint index, uint role) public{
     if(role == 3){
       list_ijazah[index].kaprodi = true;
@@ -43,10 +43,10 @@ contract SimpleStorage {
       list_ijazah[index].dekan = true;
     }
     else if(role == 5){
-      list_ijazah[index].rektor = true;
+      list_ijazah[index].warek = true;
     }
     else if(role == 6){
-      list_ijazah[index].warek = true;
+      list_ijazah[index].rektor = true;
     }
   }
   function setIjazah(string memory data, string memory nik, string memory nama, bool berkas, string memory nomor) public{
