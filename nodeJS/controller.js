@@ -159,7 +159,7 @@ exports.signature = async function(req,res){
 
     const index = (ijazah.findIndex(find));
     if(index >= 0 ){
-        await blockchain.signature(konek,index,req.session.user.role);
+        await blockchain.signature(konek,index,req.body.role);
         res.json({'message':'Signature Done'});
     }else{
         res.status(404);
