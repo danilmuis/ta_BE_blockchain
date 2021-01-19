@@ -234,6 +234,8 @@ setupBlockchain(){
     cat /home/mdm.txt | grep enode > /var/www/html/bootnode.txt
     BOOTNODE=$(cat /var/www/html/bootnode.txt)
     echo "INI : BOOTNODE=${BOOTNODE}"
+    chmod 777 $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/ijazah
+    chmod 777 $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/transkrip
     echo "export BOOTNODE=$(cat /var/www/html/bootnode.txt)" >> /etc/profile
     nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     sleep 15
