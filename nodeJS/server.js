@@ -20,16 +20,17 @@ app.use(fileUpload())
 // app.use(cors({
 //     origin: `http://0.0.0.0:${port}`
 // }));
-app.use(cors({
-    origin: [
-        'http://localhost:9000',
-        'https://mdm.smartsupportku.com',
-        'http://localhost:8080',
-        'http://localhost:8081'
-    ],
-    credentials: true,
-    exposedHeaders: ['set-cookie']
-}));
+// app.use(cors({
+//     origin: [
+//         'http://localhost:9000',
+//         'https://mdm.smartsupportku.com',
+//         'http://localhost:8080',
+//         'http://localhost:8081'
+//     ],
+//     credentials: true,
+//     exposedHeaders: ['set-cookie']
+// }));
+app.use(cors());
 app.use(cookieSession({
     name: 'session',
     keys: ['secterKey'],
@@ -46,10 +47,15 @@ var routes_creator = require('./routes_creator');
 var routes_authenticated = require('./routes_authenticated');
 var middleware = require('./middleware');
 app.use('/',routes_public);
-app.use('/',middleware.authenticated,routes_authenticated);
-app.use('/staff',middleware.authenticated,middleware.staff,routes_staff);
-app.use('/admin',middleware.authenticated,middleware.admin,routes_admin);
-app.use('/',middleware.authenticated,middleware.creator,routes_creator);
+// app.use('/',middleware.authenticated,routes_authenticated);
+// app.use('/staff',middleware.authenticated,middleware.staff,routes_staff);
+// app.use('/admin',middleware.authenticated,middleware.admin,routes_admin);
+// app.use('/',middleware.authenticated,middleware.creator,routes_creator);
+
+app.use('/',routes_authenticated);
+app.use('/staff',routes_staff);
+app.use('/admin',routes_admin);
+app.use('/',routes_creator);
 
 // app.use(function (req, res, next) {
 //     res.set("Content-Security-Policy", "default-src 'self'");
