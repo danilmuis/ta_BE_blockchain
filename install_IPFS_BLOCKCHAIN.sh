@@ -237,17 +237,15 @@ setupBlockchain(){
     chmod 777 $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/ijazah
     chmod 777 $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/transkrip
     echo "export BOOTNODE=$(cat /var/www/html/bootnode.txt)" >> /etc/profile
-    nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
-    sleep 15
-    nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
-    npm config set user 0
-    npm config set unsafe-perm true
-    sleep 15
-    npm install
-    npm run create
+    # nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
+    # nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
+    # npm config set user 0
+    # npm config set unsafe-perm true
+    # npm install
+    # npm run create
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
-    echo "Starting DWebApp"
-    npm start &
+    # echo "Starting DWebApp"
+    # npm start &
 }
 setupBlockchainPeer(){
     cd $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH
@@ -257,7 +255,7 @@ setupBlockchainPeer(){
     BOOTNODE=$(curl ${IP}/bootnode.txt)
     echo "INI : BOOTNODE=${BOOTNODE}"
     echo "export BOOTNODE=$(curl ${IP}/bootnode.txt)" >> /etc/profile
-    nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node${3}/start.sh &  
+    # nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node${3}/start.sh &  
     echo -e "[*] FINISH SETUP BLOCKCHAIN PEER"
 }
 checkRoot(){
