@@ -4,3 +4,18 @@
 09:18:02.706919 version@stat F·[] S·0B[] Sc·[]
 09:18:02.760776 db@janitor F·2 G·0
 09:18:02.760776 db@open done T·57.846ms
+=============== Apr 22, 2021 (+07) ===============
+14:47:25.819770 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:47:25.820768 version@stat F·[] S·0B[] Sc·[]
+14:47:25.820768 db@open opening
+14:47:25.820768 journal@recovery F·2
+14:47:25.824757 journal@recovery recovering @1
+14:47:25.913028 journal@recovery recovering @3
+14:47:26.091060 memdb@flush created L0@4 N·21260 S·1MiB "\x00\x00\xae..\x82\x88\x11,v9389":"\xff\xfc\x94..\xa5\x05\xa1,v9518"
+14:47:26.091060 version@stat F·[1] S·1MiB[1MiB] Sc·[0.25]
+14:47:26.437135 memdb@flush created L0@6 N·1 S·507B "eth..ˏ\xa3,v21262":"eth..ˏ\xa3,v21262"
+14:47:26.514927 version@stat F·[2] S·1MiB[1MiB] Sc·[0.50]
+14:47:26.604368 db@janitor F·6 G·2
+14:47:26.605367 db@janitor removing table-2
+14:47:26.644261 db@janitor removing manifest-4
+14:47:26.658223 db@open done T·837.4558ms

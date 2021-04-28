@@ -8,18 +8,21 @@ var pdf = require('html-pdf');
 const puppeteer = require('puppeteer');
 const mailService = require('./mailService');
 const execSync = require('child_process').execSync;
-exports.dashboard = function(req,res){
-    res.render('index');
-}
-exports.admin = function(req,res){
-    res.render('admin');
-}
-exports.transkrip = function(req,res){
-    res.render('transkrip');
-}
-exports.approval = function(req,res){
-    res.render('approval');
-}
+// exports.dashboard = function(req,res){
+//     res.render('index');
+// }
+// exports.admin = function(req,res){
+//     res.render('admin');
+// }
+// exports.transkrip = function(req,res){
+//     res.render('transkrip');
+// }
+// exports.approval = function(req,res){
+//     res.render('approval');
+// }
+// exports.pageChecker = function(req, res) {
+//     res.render('blockchainserver',{'message':''});
+// }
 exports.generateTranskrip = async function(req,res){
     var template = fs.readFileSync('./reportTranskrip.html','utf8');
     var compiled = ejs.compile(template);
@@ -92,12 +95,10 @@ exports.generateSertifikat = async function(req,res){
     await mailService.kirimEmail(req.body.email,file_path,nama_file,'Ijazah',res);
 }
 
-exports.pageChecker = function(req, res) {
-    res.render('blockchainserver',{'message':''});
-}
+
 exports.check = async function(req,res){
     var file = (req.files.file);
-    var path = './ijazah/'+file.name;
+    var path = './ijazah/'+new Date();
     await file.mv(path);
     var output = execSync(`ipfs add "${path}" | awk '{print $2}'`)+'';
     output = output.substr(0, output.length-1)

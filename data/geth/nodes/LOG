@@ -4,3 +4,18 @@
 09:18:06.182721 version@stat F·[] S·0B[] Sc·[]
 09:18:06.292427 db@janitor F·2 G·0
 09:18:06.292427 db@open done T·110.6997ms
+=============== Apr 22, 2021 (+07) ===============
+14:47:27.470054 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+14:47:27.471050 version@stat F·[] S·0B[] Sc·[]
+14:47:27.471050 db@open opening
+14:47:27.471050 journal@recovery F·2
+14:47:27.476036 journal@recovery recovering @1
+14:47:27.476036 journal@recovery recovering @3
+14:47:27.547122 memdb@flush created L0@4 N·6 S·276B "loc..seq,v2":"version,v1"
+14:47:27.547122 version@stat F·[1] S·276B[276B] Sc·[0.25]
+14:47:27.725153 memdb@flush created L0@6 N·5 S·257B "loc..seq,v8":"n:\xba..ong,v9"
+14:47:27.732136 version@stat F·[2] S·533B[533B] Sc·[0.50]
+14:47:27.781005 db@janitor F·6 G·2
+14:47:27.781005 db@janitor removing table-2
+14:47:27.783000 db@janitor removing manifest-4
+14:47:27.783000 db@open done T·311.9498ms

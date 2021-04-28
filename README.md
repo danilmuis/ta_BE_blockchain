@@ -26,17 +26,17 @@ chmod +x ./install_IPFS_BLOCKCHAIN.sh
 ```
 
 
-* Make sure variable BOOTNODE exist after installation 
+* Make sure variable BOOTNODE,IP exist after installation 
 ```bash
 echo $BOOTNODE
+echo $IP
 ```
 
 ### Install DWeb App - usually for cluster core
 
 * Setup Blockchain Account
-* 
 ```bash
-bash account/bnode/init.sh
+bash account/bnode/start.sh
 bash account/node1/start.sh
 ```
 

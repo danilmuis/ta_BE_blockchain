@@ -14,8 +14,8 @@ var blockchain = require('./methodBlockchain');
 var cookieSession = require('cookie-session')
 app.use(morgan('common'));
 //app.use(helmet());
-app.use('/public',express.static('static'));
-app.set('view engine', 'ejs')
+// app.use('/public',express.static('static'));
+// app.set('view engine', 'ejs')
 app.use(fileUpload())
 // app.use(cors({
 //     origin: `http://0.0.0.0:${port}`
