@@ -1,5 +1,5 @@
-var konek = require('./konek_blockchain');
-var blockchain = require('./methodBlockchain');
+var konek = require('../config/blockchainConnection');
+var blockchain = require('../models/methodBlockchain');
 const crypto = require('crypto');
 
 //RIFKI PUNYA

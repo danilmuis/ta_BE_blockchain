@@ -1,12 +1,12 @@
 'use strict'
-var konek = require('./konek_blockchain');
-var blockchain = require('./methodBlockchain');
+var konek = require('../config/blockchainConnection');
+var blockchain = require('../models/methodBlockchain');
 const fs = require('fs');
 const path = require('path');
 var ejs = require('ejs');
 var pdf = require('html-pdf');
 const puppeteer = require('puppeteer');
-const mailService = require('./mailService');
+const mailService = require('../services/mailService');
 const execSync = require('child_process').execSync;
 // exports.dashboard = function(req,res){
 //     res.render('index');

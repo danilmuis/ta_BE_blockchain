@@ -9,8 +9,8 @@ var app = express();
 var port = process.env.PORT || 9000;
 var cors = require('cors');
 var bodyParser = require('body-parser');
-var konek = require('./konek_blockchain');
-var blockchain = require('./methodBlockchain');
+var konek = require('./app/config/blockchainConnection');
+var blockchain = require('./app/models/methodBlockchain');
 var cookieSession = require('cookie-session')
 app.use(morgan('common'));
 //app.use(helmet());
@@ -36,16 +36,16 @@ app.use(cookieSession({
     keys: ['secterKey'],
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
-var user = require('./controller_user');
+var user = require('./app/controllers/controller_user');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-var controller = require('./controller');
-var routes_staff = require('./routes_staff');
-var routes_admin = require('./routes_admin');
-var routes_public = require('./routes_public');
-var routes_creator = require('./routes_creator');
-var routes_authenticated = require('./routes_authenticated');
-var middleware = require('./middleware');
+var controller = require('./app/controllers/certificateController');
+var routes_staff = require('./routes/routes_staff');
+var routes_admin = require('./routes/routes_admin');
+var routes_public = require('./routes/routes_public');
+var routes_creator = require('./routes/routes_creator');
+var routes_authenticated = require('./routes/routes_authenticated');
+var middleware = require('./app/middlewares/auth');
 app.use('/',routes_public);
 // app.use('/',middleware.authenticated,routes_authenticated);
 // app.use('/staff',middleware.authenticated,middleware.staff,routes_staff);

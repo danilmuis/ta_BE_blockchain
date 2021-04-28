@@ -8,10 +8,10 @@
   },
   "scripts": {
     "test": "echo tesx",
-    "start": "node nodeJS/server.js",
-    "dev": "nodemon nodeJS/server.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "mdm": "whoami",
-    "create": "node ./nodeJS/createContract"
+    "create": "node ./app/config/createBlockchainContract"
   },
   "author": "MUHAMMAD DANIL MUIS",
   "license": "ISC",

@@ -1,6 +1,6 @@
 'use strict'
 var router = require('express').Router();
-var controller = require('./controller');
+var controller = require('../app/controllers/certificateController');
 
 
 // router.get('/dashboard',controller.index);

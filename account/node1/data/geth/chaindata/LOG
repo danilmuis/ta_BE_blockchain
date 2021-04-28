@@ -716,3 +716,35 @@
 21:06:43.892951 db@open done T·235.3084ms
 21:18:10.119111 db@close closing
 21:18:10.119111 db@close done T·0s
+=============== Apr 28, 2021 (+07) ===============
+21:20:25.597123 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+21:20:25.597123 version@stat F·[3 7] S·14MiB[407KiB 13MiB] Sc·[0.75 0.14]
+21:20:25.597123 db@open opening
+21:20:25.598120 journal@recovery F·1
+21:20:25.600114 journal@recovery recovering @186
+21:20:25.699086 memdb@flush created L0@188 N·1252 S·72KiB "H\x01\xff..j\xbf\x8b,v416150":"\xfe\xa8\xce..<]\xf1,v416284"
+21:20:25.703076 version@stat F·[4 7] S·14MiB[479KiB 13MiB] Sc·[1.00 0.14]
+21:20:25.766905 db@janitor F·13 G·0
+21:20:25.766905 db@open done T·169.7828ms
+21:20:25.767903 table@compaction L0·4 -> L1·7 S·14MiB Q·416289
+21:20:26.184790 table@build created L1@191 N·60105 S·2MiB "\x00Z\x12..\x18\xccg,v55163":"b\x00\x00..\x9c\v\x1e,v19794"
+21:20:26.861205 table@build created L1@192 N·45694 S·2MiB "b\x00\x00..a\xc2D,v19803":"h\x00\x00..\x85\x14\xa3,v19949"
+21:20:27.533526 table@build created L1@193 N·28859 S·2MiB "h\x00\x00..\x14\xa3t,v19946":"h\x00\x00..LI\x0e,v135551"
+21:20:28.097550 table@build created L1@194 N·25771 S·2MiB "h\x00\x00..I\x0et,v135548":"h\x00\x00..\xc9\t\xc7,v234563"
+21:20:28.618513 table@build created L1@195 N·29072 S·2MiB "h\x00\x00..\t\xc7t,v234560":"h\x00\x00..qX\n,v330329"
+21:20:29.037782 table@build created L1@196 N·33068 S·2MiB "h\x00\x00..X\nt,v330326":"r\x00\x00..\xd5<\x95,v81208"
+21:20:29.352926 table@build created L1@197 N·36307 S·1MiB "r\x00\x00..(\xa1\xbe,v81217":"\xff\x13\xc2..\x86\x05\xf4,v559"
+21:20:29.352926 version@stat F·[0 7] S·14MiB[0B 14MiB] Sc·[0.00 0.14]
+21:20:29.377868 table@compaction committed F-4 S-123KiB Ke·0 D·3037 T·3.6099647s
+21:20:29.378856 table@remove removed @185
+21:20:29.382846 table@remove removed @182
+21:20:29.403790 table@remove removed @179
+21:20:29.418746 table@remove removed @172
+21:20:29.443679 table@remove removed @173
+21:20:29.455647 table@remove removed @174
+21:20:29.458638 table@remove removed @175
+21:20:29.472601 table@remove removed @176
+21:20:29.479583 table@remove removed @177
+21:20:29.481578 table@remove removed @178
+23:21:23.639848 db@close closing
+23:21:23.639848 db@close done T·0s
