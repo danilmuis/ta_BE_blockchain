@@ -1,9 +1,8 @@
 'use strict'
 var router = require('express').Router();
-var controller = require('../app/controllers/certificateController');
+var controller = require('../app/controllers/CertificateController');
 
 
-router.get('/dashboard',controller.index);
 router.post('/send',controller.send);
 router.get('/contract',controller.contract);
 router.post('/find',controller.find);

@@ -17,19 +17,7 @@ app.use(morgan('common'));
 // app.use('/public',express.static('static'));
 // app.set('view engine', 'ejs')
 app.use(fileUpload())
-// app.use(cors({
-//     origin: `http://0.0.0.0:${port}`
-// }));
-// app.use(cors({
-//     origin: [
-//         'http://localhost:9000',
-//         'https://mdm.smartsupportku.com',
-//         'http://localhost:8080',
-//         'http://localhost:8081'
-//     ],
-//     credentials: true,
-//     exposedHeaders: ['set-cookie']
-// }));
+
 app.use(cors());
 app.use(cookieSession({
     name: 'session',
@@ -39,7 +27,7 @@ app.use(cookieSession({
 var user = require('./app/controllers/controller_user');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-var controller = require('./app/controllers/certificateController');
+var controller = require('./app/controllers/CertificateController');
 var routes_staff = require('./routes/routes_staff');
 var routes_admin = require('./routes/routes_admin');
 var routes_public = require('./routes/routes_public');
