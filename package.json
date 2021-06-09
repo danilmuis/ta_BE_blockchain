@@ -10,7 +10,6 @@
     "test": "echo tesx",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "mdm": "whoami",
     "create": "node ./app/config/createBlockchainContract"
   },
   "author": "MUHAMMAD DANIL MUIS",
