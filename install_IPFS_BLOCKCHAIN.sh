@@ -239,10 +239,10 @@ setupBlockchain(){
     echo "export BOOTNODE=$(cat /var/www/html/bootnode.txt)" >> /etc/profile
     # nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/bnode/start.sh &
     # nohup bash $HOME/TA_DAPP_IPFS_BLOCKCHAIN_IJAZAH/account/node1/start.sh &
-    # npm config set user 0
-    # npm config set unsafe-perm true
-    # npm install
-    # npm run create
+    npm config set user 0
+    npm config set unsafe-perm true
+    npm install
+    npm run create
     echo -e "[*] FINISH SETUP AND DEPLOY SMART CONTRACT BLOCKCHAIN"
     # echo "Starting DWebApp"
     # npm start &

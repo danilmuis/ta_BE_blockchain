@@ -27,7 +27,7 @@ app.use(cookieSession({
 var user = require('./app/controllers/controller_user');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-var controller = require('./app/controllers/CertificateController');
+var controller = require('./app/controllers/certificateController');
 var routes_staff = require('./routes/routes_staff');
 var routes_admin = require('./routes/routes_admin');
 var routes_public = require('./routes/routes_public');

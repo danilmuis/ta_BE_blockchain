@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt_auth = require('../middlewares/auth_mdm');
 
-class UserController {
+class userController {
     async login(req, res) {
        
         const userFound = await database_users.getUser(req.body.email);
@@ -19,4 +19,4 @@ class UserController {
     }
 }
 
-module.exports = new UserController();
+module.exports = new userController();
